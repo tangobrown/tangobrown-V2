@@ -3,6 +3,9 @@
 import { useState } from "react";
 import ArrowUpRight from "./ArrowUpRight";
 
+// Formspree endpoint — swap the ID here if a different form is provisioned.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mkoldveb";
+
 type Note = { text: string; ok: boolean } | null;
 
 export default function ContactForm() {
@@ -17,6 +20,7 @@ export default function ContactForm() {
     const email = String(data.get("email") || "").trim();
     const service = String(data.get("service") || "").trim();
     const message = String(data.get("message") || "").trim();
+    const gotcha = String(data.get("_gotcha") || ""); // honeypot (bots fill hidden fields)
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     if (!name || !emailOk || !message) {
@@ -26,18 +30,40 @@ export default function ContactForm() {
       });
       return;
     }
+    // If the honeypot is filled, silently succeed — don't tip bots off.
+    if (gotcha) {
+      setNote({
+        text: `Thanks ${name}! Your message is on its way — I'll be in touch shortly.`,
+        ok: true,
+      });
+      form.reset();
+      return;
+    }
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, service, message }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          service,
+          message,
+          _subject: `New enquiry from ${name}${service ? ` (${service})` : ""}`,
+          _replyto: email,
+        }),
       });
       if (!res.ok) {
-        const j = (await res.json().catch(() => ({}))) as { error?: string };
+        const j = (await res.json().catch(() => ({}))) as {
+          errors?: { message: string }[];
+        };
+        const firstError = j.errors?.[0]?.message;
         setNote({
-          text: j.error || "Something went wrong — please try again.",
+          text: firstError || "Something went wrong — please try again.",
           ok: false,
         });
       } else {
@@ -57,6 +83,15 @@ export default function ContactForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="border-2 border-border p-9">
       <div className="flex flex-col gap-6">
+        {/* Honeypot — hidden from users, bots tend to fill it and get silently blocked */}
+        <input
+          type="text"
+          name="_gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
         <Field label="Name" name="name" placeholder="Your name" required />
         <Field
           label="Email"
