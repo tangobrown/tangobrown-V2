@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const siteLinks = [
@@ -46,13 +45,6 @@ export default function Footer() {
               </div>
               <div className="text-muted-soft">Exeter, Devon</div>
             </div>
-            <Image
-              src="/sig.png"
-              alt="Tim Brown signature"
-              width={180}
-              height={70}
-              className="opacity-90"
-            />
           </div>
 
           {/* Site links */}
