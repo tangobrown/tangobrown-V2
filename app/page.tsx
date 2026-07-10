@@ -129,8 +129,10 @@ export default function Home() {
       </section>
 
       {/* Selected work carousel */}
-      <section className="container-tb pb-24">
-        <WorkCarousel projects={projects} />
+      <section className="bg-cream border-t-2 border-border-light">
+        <div className="container-tb py-24">
+          <WorkCarousel projects={projects} />
+        </div>
       </section>
 
       <CtaBand
