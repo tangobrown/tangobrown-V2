@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight, Manrope } from "next/font/google";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const heading = Inter_Tight({
@@ -35,7 +37,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen">
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
