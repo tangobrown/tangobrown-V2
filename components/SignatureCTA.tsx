@@ -36,16 +36,15 @@ export default function SignatureCTA({
 
   // Wipe implementation: background-image is a solid accent gradient,
   // background-position stays at "left center", background-size grows 0% -> 100%.
-  // Base + hover text colour picks whichever reads best against the
-  // colour that dominates the button:
-  // - light variant: dark button base (white text on ink); on hover the
-  //   orange fills in and the text flips to ink so it stays legible.
-  // - dark variant: white button base (ink text on white); on hover the
-  //   orange fills in and the text flips to white so it stays legible.
+  // Text is always white on hover regardless of variant:
+  // - light variant: dark button base (white text on ink); hover keeps
+  //   text white as the orange fills in.
+  // - dark variant: white button base (ink text on white); hover flips
+  //   text to white as the orange fills in.
   const variantClasses =
     variant === "dark"
       ? "bg-white text-ink hover:text-white [background-image:linear-gradient(#ff751f,#ff751f)]"
-      : "bg-ink text-white hover:text-ink [background-image:linear-gradient(#ff751f,#ff751f)]";
+      : "bg-ink text-white [background-image:linear-gradient(#ff751f,#ff751f)]";
 
   return (
     <Link
