@@ -12,7 +12,7 @@ export default function WorkPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-cream">
+      <section className="bg-cream border-b-2 border-border-light">
         <div className="container-tb pt-24 pb-14">
           <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
             Selected work
@@ -27,7 +27,7 @@ export default function WorkPage() {
       </section>
 
       {/* Project grid */}
-      <section className="container-tb pb-24">
+      <section className="container-tb pt-24 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((p) => (
             <article key={p.name}>
