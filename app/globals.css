@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #ffffff;
+    color: #131313;
+    font-family: var(--font-body), sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #131313;
+    color: #fff;
+  }
+  a {
+    color: #131313;
+  }
+  a:hover {
+    color: #ff751f;
+  }
+}
+
+@layer utilities {
+  /* Container helper — 1320px max, 56px side padding */
+  .container-tb {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 56px;
+  }
+  /* Mask fade for auto-scrolling card columns */
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 13%, #000 87%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 13%, #000 87%, transparent);
+  }
+}

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=Manrope:wght@300;400;500;600;700;800&family=Stack+Sans+Text:wght@300;400;500;600;700&amp;family=Inter+Tight:ital,wght@0,400;0,700;1,400;1,700&amp;family=Mr+Dafoe&amp;family=Alex+Brush&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#ffffff;font-family:'Stack Sans Text','Manrope',sans-serif;color:#131313;-webkit-font-smoothing:antialiased}
+  image-slot{display:block}
+  input,textarea{font-family:'Stack Sans Text','Manrope',sans-serif}
+  ::selection{background:#131313;color:#fff}
+  a{color:#131313;text-decoration:underline;text-underline-offset:2px}
+  a:hover{color:#ff751f}
+  @keyframes tbUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  @keyframes tbDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+  @keyframes tbDraw{from{stroke-dashoffset:16}to{stroke-dashoffset:0}}
+  @keyframes tbBlink{0%,100%{opacity:1}50%{opacity:.15}}
+  @keyframes tbSearch{0%{transform:translate(0,0)}25%{transform:translate(2px,-2px)}50%{transform:translate(3px,1.5px)}75%{transform:translate(-1.5px,2px)}100%{transform:translate(0,0)}}
+  @keyframes tbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes tbPulse{0%,100%{opacity:.25}50%{opacity:1}}
+  @keyframes tbMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#ffffff">
+
+  <!-- ============ NAV ============ -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:2px solid #ececE6">
+    <div style="max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:20px 56px;position:relative">
+      <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;cursor:pointer">
+        <div style="width:34px;height:34px;border-radius:50%;background:#131313;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Stack Sans Text','Manrope',sans-serif;font-weight:700;font-size:14px">TB</div>
+        <span style="font-family:'Stack Sans Text','Manrope',sans-serif;font-weight:600;font-size:16px;letter-spacing:-.01em">Tango Brown</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:34px;font-size:15px">
+        <div onMouseEnter="{{ openSvcMenu }}" onMouseLeave="{{ closeSvcMenu }}" style="display:flex;align-items:center;gap:5px">
+          <span onClick="{{ goServices }}" style="{{ navServices }}" style-hover="color:#131313 !important">Services</span>
+          <span style="{{ svcCaretStyle }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:11px;height:11px"><path d="M12 15L6 9H18L12 15Z"></path></svg></span>
+        </div>
+        <span onClick="{{ goWork }}" style="{{ navWork }}" style-hover="color:#131313 !important">Work</span>
+        <span onClick="{{ goAbout }}" style="{{ navAbout }}" style-hover="color:#131313 !important">About</span>
+      </div>
+      <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#131313;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#fff;font-size:14px;font-weight:700;padding:11px 22px;border-radius:0;cursor:pointer;white-space:nowrap;transition:background-size .18s ease" style-hover="background-size:100% 100% !important">Get in touch <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      <div onMouseEnter="{{ openSvcMenu }}" onMouseLeave="{{ closeSvcMenu }}" style="{{ svcMenuStyle }}">
+        <div style="max-width:980px;margin:0 auto;background:#fff;border:2px solid #ececE6;border-radius:0;box-shadow:0 20px 54px rgba(0,0,0,.12);padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+          <div onClick="{{ goDesign }}" style="padding:22px 18px;border-radius:0;cursor:pointer;transition:background .15s" style-hover="background:#f7f5f0 !important">
+            <div style="height:34px;display:flex;align-items:center;margin-bottom:18px"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="32" height="26" rx="3"></rect><path d="M4 14 H36"></path><circle cx="8.5" cy="10.5" r="0.7" fill="#131313" stroke="none"></circle><path d="M10 26 H26"></path><path d="M10 21 H26" stroke-dasharray="16" style="animation:tbDraw 2.2s ease-in-out infinite alternate"></path></svg></div>
+            <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:16px;font-weight:700;margin-bottom:8px">Website Builds</div>
+            <div style="font-size:13.5px;line-height:1.5;color:#6b6b66">Bespoke, fast sites built around your goals and made to convert.</div>
+          </div>
+          <div onClick="{{ goHosting }}" style="padding:22px 18px;border-radius:0;cursor:pointer;transition:background .15s" style-hover="background:#f7f5f0 !important">
+            <div style="height:34px;display:flex;align-items:center;margin-bottom:18px"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="28" height="9" rx="2"></rect><rect x="6" y="23" width="28" height="9" rx="2"></rect><path d="M28 12.5 H30"></path><path d="M28 27.5 H30"></path><circle cx="11" cy="12.5" r="1.5" fill="#131313" stroke="none" style="animation:tbBlink 1.5s ease-in-out infinite"></circle><circle cx="11" cy="27.5" r="1.5" fill="#131313" stroke="none" style="animation:tbBlink 1.5s ease-in-out infinite;animation-delay:.75s"></circle></svg></div>
+            <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:16px;font-weight:700;margin-bottom:8px">Website Hosting</div>
+            <div style="font-size:13.5px;line-height:1.5;color:#6b6b66">Secure, reliable hosting with updates, backups and support handled.</div>
+          </div>
+          <div onClick="{{ goSeo }}" style="padding:22px 18px;border-radius:0;cursor:pointer;transition:background .15s" style-hover="background:#f7f5f0 !important">
+            <div style="height:34px;display:flex;align-items:center;margin-bottom:18px"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g style="transform-box:fill-box;transform-origin:center;animation:tbSearch 3s ease-in-out infinite"><circle cx="17" cy="17" r="10"></circle><path d="M24.5 24.5 L33 33"></path></g></svg></div>
+            <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:16px;font-weight:700;margin-bottom:8px">SEO</div>
+            <div style="font-size:13.5px;line-height:1.5;color:#6b6b66">Get found by the right people with SEO that gains your site traction in search engines.</div>
+          </div>
+          <div onClick="{{ goAi }}" style="padding:22px 18px;border-radius:0;cursor:pointer;transition:background .15s" style-hover="background:#f7f5f0 !important">
+            <div style="height:34px;display:flex;align-items:center;margin-bottom:18px"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g style="transform-box:fill-box;transform-origin:center;animation:tbSpin 7s linear infinite"><circle cx="20" cy="20" r="5.5"></circle><path d="M20 5 V9"></path><path d="M20 31 V35"></path><path d="M5 20 H9"></path><path d="M31 20 H35"></path><path d="M9.5 9.5 L12.3 12.3"></path><path d="M27.7 27.7 L30.5 30.5"></path><path d="M30.5 9.5 L27.7 12.3"></path><path d="M12.3 27.7 L9.5 30.5"></path></g><path d="M32 6 l.9 2.1 2.1 .9 -2.1 .9 -.9 2.1 -.9 -2.1 -2.1 -.9 2.1 -.9 z" fill="#131313" stroke="none" style="animation:tbPulse 2s ease-in-out infinite"></path></svg></div>
+            <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:16px;font-weight:700;margin-bottom:8px">AI &amp; Automation</div>
+            <div style="font-size:13.5px;line-height:1.5;color:#6b6b66">Practical AI tools and workflows that save you hours every week.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex:1">
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <!-- hero -->
+    <div style="position:relative;overflow:hidden">
+      <div style="position:relative;max-width:1320px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:1fr 720px;gap:48px;align-items:center;min-height:680px">
+        <!-- left text -->
+        <div>
+          <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:22px">DIGITAL GROWTH CONSULTANT</div>
+          <h1 style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 60px; line-height: 1.04; font-weight: 700; letter-spacing: -.03em; max-width: 14ch">Your growth is my mission.</h1>
+          <p style="font-size:19px;line-height:1.55;color:#55554f;max-width:46ch;margin-top:22px">Technology moves fast. I keep your business ahead of it with stunning websites and smart AI automation to fuel growth online.</p>
+          <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#131313;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#fff;font-size:15px;font-weight:700;padding:15px 30px;border-radius:0;white-space:nowrap;cursor:pointer;margin-top:28px;transition:background-size .18s ease" style-hover="background-size:100% 100% !important">Start a project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+        </div>
+        <!-- right animated card columns -->
+        <div style="position:relative;height:680px;display:grid;grid-template-columns:1fr 1fr;gap:20px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 13%,#000 87%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 13%,#000 87%,transparent)">
+          <div style="display:flex;flex-direction:column;gap:20px;animation:tbUp 34s linear infinite;will-change:transform">
+            <sc-for list="{{ cardsUp }}" as="card" hint-placeholder-count="6">
+              <div style="background:#fff;border:2px solid #e6e3dc;border-radius:0;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)">
+                <div style="aspect-ratio:1000/606;background:#ebe8e1;border-radius:0;margin-bottom:12px;overflow:hidden">{{ card.imgEl }}</div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:15px;font-weight:600;color:#131313">{{ card.name }}</span><span style="font-size:11px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">{{ card.tag }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;animation:tbDown 34s linear infinite;will-change:transform">
+            <sc-for list="{{ cardsDown }}" as="card" hint-placeholder-count="6">
+              <div style="background:#fff;border:2px solid #e6e3dc;border-radius:0;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)">
+                <div style="aspect-ratio:1000/606;background:#ebe8e1;border-radius:0;margin-bottom:12px;overflow:hidden">{{ card.imgEl }}</div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:15px;font-weight:600;color:#131313">{{ card.name }}</span><span style="font-size:11px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">{{ card.tag }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- about me (dark) -->
+    <div style="background:#131313;color:#fff">
+    <div style="max-width:1320px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:500px 1fr;gap:72px;align-items:stretch;min-height:620px">
+      <image-slot id="home-about-photo" shape="rect" radius="0" placeholder="Drop a photo" style="height:100%;width:100%"></image-slot>
+      <div style="padding:100px 0;align-self:center">
+        <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8a83;margin-bottom:26px">About me</div>
+        <h2 style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 45px; line-height: 1.08; font-weight: 700; letter-spacing: -.025em">Hi, I'm Tim Brown.</h2>
+        <p style="font-size:18px;line-height:1.6;color:#c8c6be;margin-top:26px;max-width:50ch">I'm a freelance digital growth consultant based in Exeter, working with businesses across the UK. I help them build a presence online that looks the part and actually performs.</p>
+        <p style="font-size:16px;line-height:1.65;color:#a4a39b;margin-top:18px;max-width:52ch">I join up the pieces most businesses juggle separately — design, hosting, SEO and automation — under one roof, with one person accountable for the whole thing. No agency overheads, no jargon.</p>
+        <div onClick="{{ goAbout }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#fff;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#131313;font-size:15px;font-weight:700;padding:15px 30px;border-radius:0;cursor:pointer;margin-top:34px;transition:background-size .18s ease,color .18s ease" style-hover="background-size:100% 100% !important;color:#fff !important">More about me <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      </div>
+    </div>
+    </div>
+    <!-- statement -->
+    <div style="max-width:1320px;margin:0 auto;padding:100px 56px 100px">
+      <p style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:42px;line-height:1.25;font-weight:700;letter-spacing:-.02em;max-width:880px"><span style="color: #131313; font-size: 45px; text-transform: none">Helping businesses</span> <span style="color: #b4b2aa; font-size: 45px; text-transform: none">communicate clearly and grow online through design, performance and automation.</span></p>
+    </div>
+    <!-- services preview -->
+    <div style="max-width:1320px;margin:0 auto;padding:0 56px 100px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px">
+        <h2 style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 45px; font-weight: 700; letter-spacing: -.02em">What I do</h2>
+        <span onClick="{{ goServices }}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#131313;padding-bottom:4px;background-image:linear-gradient(#ff751f,#ff751f),linear-gradient(#131313,#131313);background-repeat:no-repeat;background-position:left 100%,left 100%;background-size:0% 2px,100% 2px;transition:background-size .18s ease;cursor:pointer" style-hover="background-size:100% 2px,100% 2px !important">All services <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div onClick="{{ goDesign }}" style="border:2px solid #e6e3dc;border-radius:0;padding:26px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8f8d83 !important">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="32" height="26" rx="3"></rect><path d="M4 14 H36"></path><circle cx="8.5" cy="10.5" r="0.7" fill="#131313" stroke="none"></circle><path d="M10 26 H26"></path><path d="M10 21 H26" stroke-dasharray="16" style="animation:tbDraw 2.2s ease-in-out infinite alternate"></path></svg>
+          <div><div style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 24px; font-weight: 600; margin-bottom: 10px">Website Builds</div><div style="font-size:16px;line-height:1.5;color:#6b6b66">Bespoke, fast sites built around your goals and made to convert.</div></div>
+        </div>
+        <div onClick="{{ goHosting }}" style="border:2px solid #e6e3dc;border-radius:0;padding:26px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8f8d83 !important">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="28" height="9" rx="2"></rect><rect x="6" y="23" width="28" height="9" rx="2"></rect><path d="M28 12.5 H30"></path><path d="M28 27.5 H30"></path><circle cx="11" cy="12.5" r="1.5" fill="#131313" stroke="none" style="animation:tbBlink 1.5s ease-in-out infinite"></circle><circle cx="11" cy="27.5" r="1.5" fill="#131313" stroke="none" style="animation:tbBlink 1.5s ease-in-out infinite;animation-delay:.75s"></circle></svg>
+          <div><div style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 24px; font-weight: 600; margin-bottom: 10px">Website Hosting</div><div style="font-size:16px;line-height:1.5;color:#6b6b66">Secure, reliable hosting with updates, backups and support handled.</div></div>
+        </div>
+        <div onClick="{{ goSeo }}" style="border:2px solid #e6e3dc;border-radius:0;padding:26px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8f8d83 !important">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g style="transform-box:fill-box;transform-origin:center;animation:tbSearch 3s ease-in-out infinite"><circle cx="17" cy="17" r="10"></circle><path d="M24.5 24.5 L33 33"></path></g></svg>
+          <div><div style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 24px; font-weight: 600; margin-bottom: 10px">SEO</div><div style="font-size:16px;line-height:1.5;color:#6b6b66">Get found by the right people with SEO that gains your site traction in search engines.</div></div>
+        </div>
+        <div onClick="{{ goAi }}" style="border:2px solid #e6e3dc;border-radius:0;padding:26px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8f8d83 !important">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g style="transform-box:fill-box;transform-origin:center;animation:tbSpin 7s linear infinite"><circle cx="20" cy="20" r="5.5"></circle><path d="M20 5 V9"></path><path d="M20 31 V35"></path><path d="M5 20 H9"></path><path d="M31 20 H35"></path><path d="M9.5 9.5 L12.3 12.3"></path><path d="M27.7 27.7 L30.5 30.5"></path><path d="M30.5 9.5 L27.7 12.3"></path><path d="M12.3 27.7 L9.5 30.5"></path></g><path d="M32 6 l.9 2.1 2.1 .9 -2.1 .9 -.9 2.1 -.9 -2.1 -2.1 -.9 2.1 -.9 z" fill="#131313" stroke="none" style="animation:tbPulse 2s ease-in-out infinite"></path></svg>
+          <div><div style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 24px; font-weight: 600; margin-bottom: 10px">AI &amp; Automation</div><div style="font-size:16px;line-height:1.5;color:#6b6b66">Practical AI tools and workflows that save you hours every week.</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- selected work (pinned horizontal scroll) -->
+    <div style="max-width:1320px;margin:0 auto;padding:0 56px 100px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:48px">
+        <h2 style="font-family: 'Inter Tight',sans-serif;text-transform:uppercase; font-size: 45px; font-weight: 700; letter-spacing: -.02em">Selected work</h2>
+        <div style="display:flex;align-items:center;gap:24px">
+          <span onClick="{{ goWork }}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#131313;padding-bottom:4px;background-image:linear-gradient(#ff751f,#ff751f),linear-gradient(#131313,#131313);background-repeat:no-repeat;background-position:left 100%,left 100%;background-size:0% 2px,100% 2px;transition:background-size .18s ease;cursor:pointer" style-hover="background-size:100% 2px,100% 2px !important">View all <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></span>
+          <div style="display:flex;gap:10px">
+            <div onClick="{{ prevWork }}" style="width:48px;height:48px;border:2px solid #d9d5cc;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#131313" style-hover="border-color:#131313"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg></div>
+            <div onClick="{{ nextWork }}" style="width:48px;height:48px;border:2px solid #d9d5cc;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#131313" style-hover="border-color:#131313"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg></div>
+          </div>
+        </div>
+      </div>
+      <div style="overflow:hidden;width:100%">
+        <div style="{{ workTrackStyle }}">
+          <sc-for list="{{ workCards }}" as="p" hint-placeholder-count="4">
+            <div style="{{ p.cellStyle }}">
+              <div style="aspect-ratio:1000/606;width:100%;overflow:hidden;background:#ffffff">
+                {{ p.imgEl }}
+                <sc-if value="{{ p.slotId }}" hint-placeholder-val="{{ false }}"><image-slot id="{{ p.slotId }}" shape="rect" radius="0" placeholder="Drop project image" style="width:100%;height:100%"></image-slot></sc-if>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">{{ p.name }}</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">{{ p.tag }}</div></div>
+              <p style="font-size:16px;line-height:1.6;color:#6b6b66;margin-top:8px;max-width:46ch">{{ p.overview }}</p>
+              <a href="{{ p.url }}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:18px;font-size:15px;font-weight:600;color:#131313;padding-bottom:4px;background-image:linear-gradient(#ff751f,#ff751f),linear-gradient(#131313,#131313);background-repeat:no-repeat;background-position:left 100%,left 100%;background-size:0% 2px,100% 2px;transition:background-size .18s ease;text-decoration:none" style-hover="background-size:100% 2px,100% 2px !important">Visit website <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></a>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <!-- CTA band -->
+    <div style="background:#131313;color:#fff">
+      <div style="max-width:1320px;margin:0 auto;padding:100px 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+        <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:54px;font-weight:700;letter-spacing:-.03em;max-width:16ch;line-height:1.05">Let's grow your business online.</div>
+        <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#fff;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#131313;font-size:15px;font-weight:700;padding:16px 32px;border-radius:0;white-space:nowrap;cursor:pointer;transition:background-size .18s ease,color .18s ease" style-hover="background-size:100% 100% !important;color:#fff !important">Start a project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ SERVICE DETAIL ============ -->
+  <sc-if value="{{ isService }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <!-- hero: title + intro left, image right, full-width grey bottom border -->
+    <div style="border-bottom:2px solid #ececE6">
+      <div style="max-width:1320px;margin:0 auto;padding:80px 56px 0;display:grid;grid-template-columns:1fr 500px;gap:72px;align-items:center">
+        <div>
+          <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:22px">{{ svc.numLabel }} · Services</div>
+          <h1 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:60px;line-height:1.04;font-weight:700;letter-spacing:-.03em">{{ svc.title }}</h1>
+          <p style="font-size:19px;line-height:1.55;color:#55554f;max-width:48ch;margin-top:24px">{{ svc.lead }}</p>
+          <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#131313;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#fff;font-size:15px;font-weight:700;padding:15px 30px;border-radius:0;white-space:nowrap;cursor:pointer;margin-top:30px;transition:background-size .18s ease" style-hover="background-size:100% 100% !important">Start a project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+        </div>
+        <div style="align-self:end;height:500px;width:100%;border-radius:0;overflow:hidden"><image-slot id="{{ svc.heroSlotId }}" shape="rect" radius="0" placeholder="Drop a service image" style="width:100%;height:100%"></image-slot></div>
+      </div>
+    </div>
+
+    <!-- centred quote -->
+    <div style="max-width:1320px;margin:0 auto;padding:90px 56px;text-align:center">
+      <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b4b2aa;margin-bottom:26px">In short</div>
+      <blockquote style="font-family:'Stack Sans Text','Manrope',sans-serif;font-size:36px;line-height:1.3;font-weight:700;letter-spacing:-.02em;color:#131313;max-width:60%;margin:0 auto">“{{ svc.quote }}”</blockquote>
+    </div>
+
+    <!-- examples / case studies -->
+    <div style="border-top:2px solid #ececE6">
+      <div style="max-width:1320px;margin:0 auto;padding:88px 56px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px">
+          <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:32px;font-weight:700;letter-spacing:-.02em">Recent examples</h2>
+          <span onClick="{{ goWork }}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#131313;padding-bottom:4px;background-image:linear-gradient(#ff751f,#ff751f),linear-gradient(#131313,#131313);background-repeat:no-repeat;background-position:left 100%,left 100%;background-size:0% 2px,100% 2px;transition:background-size .18s ease;cursor:pointer" style-hover="background-size:100% 2px,100% 2px !important">View all work <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+          <sc-for list="{{ svc.examples }}" as="ex" hint-placeholder-count="3">
+            <div>
+              <div style="aspect-ratio:1000/606;width:100%;overflow:hidden;background:#f2f0ea;border-radius:0">
+                {{ ex.imgEl }}
+                <sc-if value="{{ ex.slotId }}" hint-placeholder-val="{{ false }}"><image-slot id="{{ ex.slotId }}" shape="rect" radius="0" placeholder="Drop example image" style="width:100%;height:100%"></image-slot></sc-if>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:12px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">{{ ex.name }}</div><div style="font-size:12px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">{{ ex.tag }}</div></div>
+              <p style="font-size:15px;line-height:1.55;color:#6b6b66;margin-top:8px">{{ ex.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- what makes it different -->
+    <div style="background:#faf9f6;border-top:2px solid #ececE6">
+      <div style="max-width:1320px;margin:0 auto;padding:88px 56px">
+        <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:40px">What makes it different</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+          <sc-for list="{{ svc.differentiators }}" as="d" hint-placeholder-count="4">
+            <div style="background:#fff;border:2px solid #e6e3dc;border-radius:0;padding:28px;min-height:210px;display:flex;flex-direction:column">
+              <div style="width:52px;height:52px;border-radius:0;background:#f2f0ea;display:flex;align-items:center;justify-content:center;margin-bottom:22px">{{ d.iconEl }}</div>
+              <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:19px;font-weight:700;margin-bottom:9px;letter-spacing:-.01em">{{ d.title }}</div>
+              <div style="font-size:15px;line-height:1.55;color:#6b6b66">{{ d.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- testimonials -->
+    <div style="background:#131313;color:#fff;padding:100px 0;overflow:hidden">
+      <div style="max-width:1320px;margin:0 auto;padding:0 56px 40px">
+        <svg viewBox="0 0 24 24" fill="#3a3a38" style="width:44px;height:44px"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"></path></svg>
+      </div>
+      <div style="max-width:1320px;margin:0 auto;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)">
+        <div style="display:flex;gap:28px;width:max-content;padding:0 28px;animation:tbMarquee 45s linear infinite" style-hover="animation-play-state:paused !important">
+          <sc-for list="{{ svc.testimonialsLoop }}" as="t" hint-placeholder-count="6">
+            <div style="flex:0 0 440px;background:#1d1d1b;border:2px solid #2c2c2a;border-radius:0;padding:34px;display:flex;flex-direction:column">
+              <blockquote style="font-family:'Stack Sans Text','Manrope',sans-serif;font-size:21px;line-height:1.45;font-weight:700;letter-spacing:-.01em">{{ t.quote }}</blockquote>
+              <div style="margin-top:24px;font-size:15px;font-weight:600;color:#fff">{{ t.author }}</div>
+              <div style="font-size:13px;color:#8a8a83;margin-top:3px">{{ t.role }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div style="max-width:900px;margin:0 auto;padding:96px 56px">
+      <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:40px">Frequently asked</h2>
+      <sc-for list="{{ svc.faqs }}" as="f" hint-placeholder-count="4">
+        <div onClick="{{ f.toggle }}" style="border-top:2px solid #e6e3dc;padding:24px 0;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:24px">
+            <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:19px;font-weight:700;letter-spacing:-.01em">{{ f.q }}</div>
+            <span style="{{ f.iconStyle }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#9a9a93" style="width:22px;height:22px;flex-shrink:0"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg></span>
+          </div>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:16px;line-height:1.6;color:#55554f;margin-top:16px;max-width:64ch">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- CTA band -->
+    <div style="background:#131313;color:#fff">
+      <div style="max-width:1320px;margin:0 auto;padding:96px 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+        <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:54px;font-weight:700;letter-spacing:-.03em;max-width:18ch;line-height:1.05">Let's talk about your {{ svc.title }} project.</div>
+        <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#fff;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#131313;font-size:15px;font-weight:700;padding:16px 32px;border-radius:0;white-space:nowrap;cursor:pointer;transition:background-size .18s ease,color .18s ease" style-hover="background-size:100% 100% !important;color:#fff !important">Get in touch <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ WORK ============ -->
+  <sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <div style="max-width:1320px;margin:0 auto;padding:96px 56px 56px">
+      <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:28px">Selected work</div>
+      <h1 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:64px;line-height:1.04;font-weight:700;letter-spacing:-.03em;max-width:16ch">A few projects I'm proud of.</h1>
+      <p style="font-size:19px;line-height:1.55;color:#55554f;max-width:52ch;margin-top:28px">Websites, hosting, SEO and automation for UK businesses. Drop your own project images in below.</p>
+    </div>
+    <div style="max-width:1320px;margin:0 auto;padding:24px 56px 100px;display:grid;grid-template-columns:1fr 1fr;gap:24px 24px">
+      <div><div style="aspect-ratio:1000/606;width:100%;overflow:hidden;background:#ffffff"><img src="./devon-joinery.png" alt="Devon Joinery website" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block"></div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">Devon Joinery</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">Website Design</div></div><p style="font-size:16px;color:#6b6b66;margin-top:6px;max-width:46ch">A bespoke website for an Exeter joinery firm — showcasing their craftsmanship and driving estimate enquiries.</p></div>
+      <div><div style="aspect-ratio:1000/606;width:100%"><image-slot id="work-1" shape="rect" radius="0" placeholder="Drop project image" style="width:100%;height:100%"></image-slot></div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">Project name</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">Website Design</div></div><p style="font-size:14px;color:#6b6b66;margin-top:6px;max-width:46ch">A short line about the project and the result it delivered.</p></div>
+      <div><div style="aspect-ratio:1000/606;width:100%"><image-slot id="work-2" shape="rect" radius="0" placeholder="Drop project image" style="width:100%;height:100%"></image-slot></div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">Project name</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">SEO</div></div><p style="font-size:14px;color:#6b6b66;margin-top:6px;max-width:46ch">A short line about the project and the result it delivered.</p></div>
+      <div><div style="aspect-ratio:1000/606;width:100%"><image-slot id="work-3" shape="rect" radius="0" placeholder="Drop project image" style="width:100%;height:100%"></image-slot></div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">Project name</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">Hosting</div></div><p style="font-size:14px;color:#6b6b66;margin-top:6px;max-width:46ch">A short line about the project and the result it delivered.</p></div>
+      <div><div style="aspect-ratio:1000/606;width:100%"><image-slot id="work-4" shape="rect" radius="0" placeholder="Drop project image" style="width:100%;height:100%"></image-slot></div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px"><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:20px;font-weight:700">Project name</div><div style="font-size:13px;color:#9a9a93;text-transform:uppercase;letter-spacing:.06em">AI &amp; Automation</div></div><p style="font-size:14px;color:#6b6b66;margin-top:6px;max-width:46ch">A short line about the project and the result it delivered.</p></div>
+    </div>
+    <div style="background:#131313;color:#fff">
+      <div style="max-width:1320px;margin:0 auto;padding:96px 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+        <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:54px;font-weight:700;letter-spacing:-.03em;max-width:16ch;line-height:1.05">Your project could be next.</div>
+        <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#fff;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#131313;font-size:15px;font-weight:700;padding:16px 32px;border-radius:0;white-space:nowrap;cursor:pointer;transition:background-size .18s ease,color .18s ease" style-hover="background-size:100% 100% !important;color:#fff !important">Start a project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ ABOUT ============ -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <div style="max-width:1320px;margin:0 auto;padding:96px 56px 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start">
+      <div>
+        <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:28px">About</div>
+        <h1 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:58px;line-height:1.05;font-weight:700;letter-spacing:-.03em">Hi, I'm Tim Brown.</h1>
+        <p style="font-size:19px;line-height:1.6;color:#55554f;margin-top:28px">I'm a freelance digital consultant based in Exeter, working with businesses across the UK. I help them build a presence online that looks the part and actually performs.</p>
+        <p style="font-size:17px;line-height:1.65;color:#55554f;margin-top:20px">For me, that means joining up the pieces most businesses juggle separately — design, hosting, SEO and automation — under one roof, with one person who's accountable for the whole thing. No agency overheads, no account managers, no jargon. Just clear, honest work that moves the needle.</p>
+        <p style="font-size:17px;line-height:1.65;color:#55554f;margin-top:20px">Whether you're starting from scratch or improving what you've already got, I'll help you make decisions that pay off long after the project ends.</p>
+      </div>
+      <image-slot id="about-portrait" shape="rect" radius="0" placeholder="Drop a portrait" style="height: 520px; width: 100%"></image-slot>
+    </div>
+    <!-- values -->
+    <div style="max-width:1320px;margin:0 auto;padding:48px 56px 100px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:2px solid #ececE6;padding-top:48px">
+        <div><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:10px">One point of contact</div><div style="font-size:15px;line-height:1.55;color:#6b6b66">You deal with me, start to finish. Faster decisions, clearer communication.</div></div>
+        <div><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:10px">Built to last</div><div style="font-size:15px;line-height:1.55;color:#6b6b66">Fast, maintainable sites and systems that grow with your business.</div></div>
+        <div><div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:10px">No jargon</div><div style="font-size:15px;line-height:1.55;color:#6b6b66">Plain English, honest advice, and a clear plan you'll actually understand.</div></div>
+      </div>
+    </div>
+    <div style="background:#131313;color:#fff">
+      <div style="max-width:1320px;margin:0 auto;padding:96px 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+        <div style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:54px;font-weight:700;letter-spacing:-.03em;max-width:16ch;line-height:1.05">Let's have a chat.</div>
+        <div onClick="{{ goContact }}" style="font-family:'Inter Tight',sans-serif;font-style:italic;display:inline-flex;align-items:center;gap:8px;background-color:#fff;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#131313;font-size:15px;font-weight:700;padding:16px 32px;border-radius:0;white-space:nowrap;cursor:pointer;transition:background-size .18s ease,color .18s ease" style-hover="background-size:100% 100% !important;color:#fff !important">Get in touch <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ CONTACT ============ -->
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <div style="max-width:1320px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+      <div>
+        <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:28px">Contact</div>
+        <h1 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:60px;line-height:1.04;font-weight:700;letter-spacing:-.03em">Let's start something.</h1>
+        <p style="font-size:18px;line-height:1.6;color:#55554f;margin-top:28px;max-width:42ch">Tell me a little about your business and what you're hoping to achieve. I'll get back to you within one working day.</p>
+        <div style="margin-top:48px;display:flex;flex-direction:column;gap:24px">
+          <div><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:6px">Email</div><div style="font-size:18px;color:#131313">tim@tangobrown.com</div></div>
+          <div><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:6px">Phone</div><div style="font-size:18px;color:#131313">07594 404 388</div></div>
+          <div><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:6px">Based in</div><div style="font-size:18px;color:#131313">Exeter, Devon — working UK-wide</div></div>
+        </div>
+      </div>
+      <div style="border:2px solid #e6e3dc;border-radius:0;padding:36px">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div><label style="font-size:13px;font-weight:600;color:#3a3a38;display:block;margin-bottom:8px">Name</label><input type="text" placeholder="Your name" style="width:100%;border:none;border-bottom:2px solid #e0ddd4;padding:10px 2px;font-size:16px;color:#131313;outline:none;background:transparent"></div>
+          <div><label style="font-size:13px;font-weight:600;color:#3a3a38;display:block;margin-bottom:8px">Email</label><input type="email" placeholder="you@company.com" style="width:100%;border:none;border-bottom:2px solid #e0ddd4;padding:10px 2px;font-size:16px;color:#131313;outline:none;background:transparent"></div>
+          <div><label style="font-size:13px;font-weight:600;color:#3a3a38;display:block;margin-bottom:8px">Service</label><input type="text" placeholder="Website Design, SEO…" style="width:100%;border:none;border-bottom:2px solid #e0ddd4;padding:10px 2px;font-size:16px;color:#131313;outline:none;background:transparent"></div>
+          <div><label style="font-size:13px;font-weight:600;color:#3a3a38;display:block;margin-bottom:8px">About your project</label><textarea rows="4" placeholder="A few lines about what you need…" style="width:100%;border:2px solid #e0ddd4;border-radius:0;padding:12px;font-size:16px;color:#131313;outline:none;background:transparent;resize:vertical"></textarea></div>
+          <div style="font-family:'Inter Tight',sans-serif;font-style:italic;display:flex;align-items:center;justify-content:center;gap:8px;background-color:#131313;background-image:linear-gradient(#ff751f,#ff751f);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;color:#fff;font-size:15px;font-weight:700;padding:15px;border-radius:0;cursor:pointer;transition:background-size .18s ease" style-hover="background-size:100% 100% !important">Send message <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  </div>
+
+  <!-- ============ PRIVACY ============ -->
+  <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:820px;margin:0 auto;padding:96px 56px">
+    <div style="font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a93;margin-bottom:22px">Legal</div>
+    <h1 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:52px;line-height:1.05;font-weight:700;letter-spacing:-.03em">Privacy Policy</h1>
+    <p style="font-size:16px;color:#9a9a93;margin-top:16px">Last updated July 2026</p>
+
+    <div style="margin-top:44px;display:flex;flex-direction:column;gap:34px">
+      <div>
+        <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:12px">Who I am</h2>
+        <p style="font-size:17px;line-height:1.65;color:#55554f">Tango Brown is the trading name of Tim Brown, a freelance digital consultant based in Exeter, Devon. If you have any questions about this policy or your data, email <a href="mailto:tim@tangobrown.com">tim@tangobrown.com</a>.</p>
+      </div>
+      <div>
+        <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:12px">What I collect</h2>
+        <p style="font-size:17px;line-height:1.65;color:#55554f">When you use the contact form I collect your name, email address and the details you choose to share about your project. I only use this information to respond to your enquiry and discuss working together.</p>
+      </div>
+      <div>
+        <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:12px">How I use it</h2>
+        <p style="font-size:17px;line-height:1.65;color:#55554f">Your details are never sold or shared with third parties for marketing. I keep enquiry records only for as long as needed to provide my services and meet legal obligations.</p>
+      </div>
+      <div>
+        <h2 style="font-family:'Inter Tight',sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:12px">Your rights</h2>
+        <p style="font-size:17px;line-height:1.65;color:#55554f">You can ask to see, correct or delete any personal data I hold about you at any time. Just get in touch and I'll action it promptly, in line with UK GDPR.</p>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <div style="background:#ffffff;border-top:2px solid #ececE6">
+    <div style="max-width:1320px;margin:0 auto;padding:56px 56px 28px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:44px">
+        <div style="font-size:15px;line-height:1.7;color:#55554f">
+          <div style="color:#131313;font-weight:600;margin-bottom:8px">Tim Brown</div>
+          tim@tangobrown.com<br>07594 404 388<br>Exeter, Devon
+          <img src="./sig.png" alt="Tim Brown signature" style="display:block;width:180px;height:auto;margin-top:22px">
+        </div>
+        <div style="display:flex;gap:64px;font-size:14px;color:#6b6b66">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span onClick="{{ goAbout }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">About</span>
+            <span onClick="{{ goWork }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">Work</span>
+            <span onClick="{{ goContact }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">Contact</span>
+            <span onClick="{{ goPrivacy }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">Privacy</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span onClick="{{ goDesign }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">Website Builds</span>
+            <span onClick="{{ goHosting }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">Website Hosting</span>
+            <span onClick="{{ goSeo }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">SEO</span>
+            <span onClick="{{ goAi }}" style="cursor:pointer;transition:color .18s ease" style-hover="color:#131313 !important">AI &amp; Automation</span>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:2px solid #ececE6;margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:#9a9a93;flex-wrap:wrap;gap:10px">
+        <span>© 2026 Tango Brown — Tim Brown</span>
+        <span>Digital Growth Consultant<br></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home', activeSvc: 0, workIdx: 0, openFaq: null, svcMenu: false };
+  go(p){
+    this.setState({ page: p, activeSvc: 0, openFaq: null, svcMenu: false });
+    try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch(e) { try { window.scrollTo(0,0); } catch(e2){} }
+  }
+  openSvcMenu(){
+    if (this._svcT) { clearTimeout(this._svcT); this._svcT = null; }
+    if (!this.state.svcMenu) this.setState({ svcMenu: true });
+  }
+  closeSvcMenu(){
+    if (this._svcT) clearTimeout(this._svcT);
+    this._svcT = setTimeout(() => { this._svcT = null; this.setState({ svcMenu: false }); }, 160);
+  }
+  componentDidMount(){ this.syncObserver(); }
+  componentDidUpdate(){ this.syncObserver(); }
+  componentWillUnmount(){
+    if (this._obs) { this._obs.disconnect(); this._obs = null; }
+    if (this._svcT) { clearTimeout(this._svcT); this._svcT = null; }
+    if (this._wrapT) { clearTimeout(this._wrapT); this._wrapT = null; }
+  }
+  workProjects(){
+    return [
+      { name: 'Devon Joinery', img: './devon-joinery.png', url: 'https://www.devonjoinery.co.uk',
+        overview: 'A bespoke website for an Exeter joinery firm \u2014 built to showcase their craftsmanship and turn visitors into estimate enquiries.',
+        services: ['Website Design'] },
+      { name: '505 Economics', slotId: 'home-work-1', url: '#',
+        overview: 'A clean, credible site for an economics consultancy \u2014 making complex research approachable for the clients who commission it.',
+        services: ['Website Design'] },
+      { name: 'The Old Fashioned Cocktail Co.', slotId: 'home-work-2', url: '#',
+        overview: 'A drinks brand refresh backed by search and hosting \u2014 more visibility, faster pages and steadier sales all year round.',
+        services: ['SEO', 'Website Hosting'] },
+      { name: 'Project name', slotId: 'home-work-3', url: '#',
+        overview: 'A short line about the project and the result it delivered.',
+        services: ['AI & Automation'] }
+    ];
+  }
+  prevWork(){
+    const n = this.workProjects().length;
+    const cur = this.state.workIdx || 0;
+    clearTimeout(this._wrapT);
+    if (cur <= 0) {
+      this.setState({ workIdx: n, workAnim: false });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        this.setState({ workIdx: n - 1, workAnim: true });
+      }));
+    } else {
+      this.setState({ workIdx: cur - 1, workAnim: true });
+    }
+  }
+  nextWork(){
+    const n = this.workProjects().length;
+    const cur = this.state.workIdx || 0;
+    clearTimeout(this._wrapT);
+    this.setState({ workIdx: cur + 1, workAnim: true });
+    this._wrapT = setTimeout(() => {
+      if ((this.state.workIdx || 0) >= n) this.setState({ workIdx: (this.state.workIdx || 0) - n, workAnim: false });
+    }, 600);
+  }
+  syncObserver(){
+    const onServices = this.state.page === 'services';
+    if (onServices && !this._obs && typeof IntersectionObserver !== 'undefined') {
+      const attach = (tries) => {
+        const blocks = document.querySelectorAll('[data-svc-block]');
+        if (!blocks.length) { if (tries > 0) setTimeout(() => attach(tries - 1), 60); return; }
+        this._obs = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) {
+              const i = parseInt(en.target.getAttribute('data-svc-block'), 10);
+              if (i !== this.state.activeSvc) this.setState({ activeSvc: i });
+            }
+          });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+        blocks.forEach((b) => this._obs.observe(b));
+      };
+      attach(10);
+    }
+    if (!onServices && this._obs) { this._obs.disconnect(); this._obs = null; }
+  }
+  serviceData(){
+    return {
+      design: {
+        key: 'design', num: '01', title: 'Website Builds', next: 'hosting',
+        heroSlotId: 'svc-hero-design',
+        lead: 'Bespoke websites designed around your goals and your customers — fast, accessible and built to turn visitors into enquiries. No templates, no bloat.',
+        quote: 'A website should do more than look good. It should earn its place by turning visitors into customers.',
+        examples: [
+          { img: './devon-joinery.png', name: 'Devon Joinery', tag: 'Website Build', desc: 'A bespoke site for an Exeter joinery firm — built to showcase craftsmanship and drive estimate enquiries.' },
+          { slotId: 'ex-design-2', name: '505 Economics', tag: 'Website Build', desc: 'A clean, credible site for an economics consultancy, making complex research approachable.' },
+          { slotId: 'ex-design-3', name: 'Coastal Caf\u00e9', tag: 'Website Build', desc: 'A warm, mobile-first site with online booking that keeps more tables full.' }
+        ],
+        differentiators: [
+          { icon: 'pencil', title: 'Bespoke, never templated', desc: 'Designed from scratch around your goals — no themes, no bloat.' },
+          { icon: 'bolt', title: 'Fast & lightweight', desc: 'Clean builds that load in a blink and score well on Core Web Vitals.' },
+          { icon: 'target', title: 'Made to convert', desc: 'Every layout is shaped around the action you want visitors to take.' },
+          { icon: 'refresh', title: 'Yours to manage', desc: 'Update content yourself with a simple CMS and a short handover.' }
+        ],
+        testimonials: [
+          { quote: 'Tim took the time to understand our trade and built something that actually brings in work. Enquiries are up and it looks brilliant.', author: 'Mark Reeves', role: 'Devon Joinery' },
+          { quote: 'The whole process was painless. Tim turned a vague brief into a site that finally reflects how good our work is.', author: 'Elena Fisk', role: '505 Economics' },
+          { quote: 'Fast, thoughtful and no jargon. Our new site loads instantly and the booking form has already paid for itself.', author: 'Dan Whitmore', role: 'Coastal Caf\u00e9' }
+        ],
+        faqs: [
+          { q: 'How long does a website take?', a: 'Most sites take 3\u20136 weeks from kick-off to launch, depending on size and how quickly content comes together.' },
+          { q: 'Do you write the content too?', a: 'I can. I\u2019ll help shape the structure and copy, or work with what you already have \u2014 whatever gets the best result.' },
+          { q: 'Will I be able to edit it myself?', a: 'Yes. I build on a straightforward CMS and walk you through it so you can update text and images with confidence.' },
+          { q: 'What does it cost?', a: 'Every project is quoted on a fixed scope so there are no surprises. Get in touch and I\u2019ll put a clear proposal together.' }
+        ]
+      },
+      hosting: {
+        key: 'hosting', num: '02', title: 'Website Hosting', next: 'seo',
+        heroSlotId: 'svc-hero-hosting',
+        lead: 'Fully-managed hosting so your site stays fast, secure and online. Updates, backups and monitoring are handled for you — one less thing to think about.',
+        quote: 'Once your site is live, it should just work — quietly, reliably, without you ever having to think about it.',
+        examples: [
+          { slotId: 'ex-hosting-1', name: 'Zero-downtime migration', tag: 'Migration', desc: 'Moved a slow, insecure site onto fast, managed servers with no downtime for the client.' },
+          { slotId: 'ex-hosting-2', name: 'Always-on monitoring', tag: 'Uptime', desc: 'Proactive alerts and quick fixes keep client sites available around the clock.' },
+          { slotId: 'ex-hosting-3', name: 'Backups that saved the day', tag: 'Recovery', desc: 'Daily backups meant a client\u2019s site was restored in minutes, not days.' }
+        ],
+        differentiators: [
+          { icon: 'gauge', title: 'Always online', desc: 'Uptime monitoring and rapid fixes keep your site available.' },
+          { icon: 'shield', title: 'Secure by default', desc: 'SSL, firewalls and updates protect your site and your customers.' },
+          { icon: 'refresh', title: 'Backed up daily', desc: 'Automatic daily backups mean nothing is ever lost.' },
+          { icon: 'headset', title: 'One point of contact', desc: 'No call centres — you deal with me, and I know your site.' }
+        ],
+        testimonials: [
+          { quote: 'Since Tim took over our hosting we\u2019ve had zero downtime and I never worry about it. Any question, he\u2019s straight back to me.', author: 'Sarah Coles', role: 'The Old Fashioned Cocktail Co.' },
+          { quote: 'Migrating over was completely seamless \u2014 I didn\u2019t notice a thing, and the site has been quicker ever since.', author: 'Owen Pryce', role: 'Pryce & Co.' },
+          { quote: 'Knowing someone is watching the site around the clock is worth every penny. Total peace of mind.', author: 'Rachel Dunn', role: 'Dunn Interiors' }
+        ],
+        faqs: [
+          { q: 'Can you host my existing website?', a: 'Almost always, yes. I\u2019ll review your current setup and handle the migration for you with no downtime.' },
+          { q: 'What happens if something breaks?', a: 'I monitor sites proactively, so I often fix issues before you notice. If something does go wrong, I\u2019m on it fast.' },
+          { q: 'Are backups included?', a: 'Yes \u2014 daily backups are standard, and I can restore your site quickly if it\u2019s ever needed.' },
+          { q: 'Is there a long contract?', a: 'No lock-in. Hosting is a simple monthly plan you can leave whenever you like.' }
+        ]
+      },
+      seo: {
+        key: 'seo', num: '03', title: 'SEO', next: 'ai',
+        heroSlotId: 'svc-hero-seo',
+        lead: 'Get found by the people already looking for you. Technical, on-page and content SEO that builds rankings and traffic that compound over time.',
+        quote: 'The best marketing is being there the moment someone searches for exactly what you offer.',
+        examples: [
+          { slotId: 'ex-seo-1', name: 'Local search takeover', tag: 'Local SEO', desc: 'Got a Devon trade business ranking in the top three for its key local searches.' },
+          { slotId: 'ex-seo-2', name: 'Content that ranks', tag: 'Content', desc: 'A focused blog strategy that grew organic traffic month on month.' },
+          { slotId: 'ex-seo-3', name: 'Technical clean-up', tag: 'Technical', desc: 'Fixed the issues holding a site back and watched rankings climb.' }
+        ],
+        differentiators: [
+          { icon: 'search', title: 'Get found', desc: 'Rank for the searches your customers are already making.' },
+          { icon: 'pin', title: 'Local visibility', desc: 'Show up in map results and \u2018near me\u2019 searches that drive footfall.' },
+          { icon: 'chart', title: 'Compounding returns', desc: 'Organic traffic that keeps growing without paying per click.' },
+          { icon: 'gauge', title: 'Clear reporting', desc: 'Plain-English reports so you always know what\u2019s working.' }
+        ],
+        testimonials: [
+          { quote: 'We went from nowhere to the front page for our main searches. The phone genuinely rings more because of it.', author: 'James Whitfield', role: 'Northside' },
+          { quote: 'We finally show up when people search locally. The enquiries coming through are exactly the customers we want.', author: 'Meera Shah', role: 'Shah Dental' },
+          { quote: 'Clear reporting, no smoke and mirrors. Tim explained what he was doing and the rankings followed.', author: 'Greg Allen', role: 'Allen Plumbing' }
+        ],
+        faqs: [
+          { q: 'How long until I see results?', a: 'SEO is a longer game \u2014 expect meaningful movement in 3\u20136 months, with results that keep compounding.' },
+          { q: 'Do you guarantee rankings?', a: 'No honest SEO can guarantee a #1 spot, but I focus on the changes that reliably move the needle.' },
+          { q: 'Is this just for local businesses?', a: 'Not at all. I do local SEO and broader national and content-led SEO depending on your goals.' },
+          { q: 'Will you report on progress?', a: 'Yes. You\u2019ll get regular, jargon-free reports showing rankings, traffic and what I\u2019m working on next.' }
+        ]
+      },
+      ai: {
+        key: 'ai', num: '04', title: 'AI & Automation', next: 'design',
+        heroSlotId: 'svc-hero-ai',
+        lead: 'Put the repetitive work on autopilot. Practical AI tools and automated workflows that save hours, reduce errors and free you to focus on the business.',
+        quote: 'The goal isn\u2019t clever technology for its own sake — it\u2019s giving you back the hours you\u2019re losing to repetitive work.',
+        examples: [
+          { slotId: 'ex-ai-1', name: 'Enquiry auto-responder', tag: 'AI Assistant', desc: 'An assistant that answers common questions and books calls automatically.' },
+          { slotId: 'ex-ai-2', name: 'Joined-up tools', tag: 'Integration', desc: 'Connected a client\u2019s forms, CRM and inbox so data is only entered once.' },
+          { slotId: 'ex-ai-3', name: 'Admin on autopilot', tag: 'Automation', desc: 'Automated invoicing and follow-ups, saving hours every week.' }
+        ],
+        differentiators: [
+          { icon: 'clock', title: 'Save hours', desc: 'Automate the repetitive admin that eats into your week.' },
+          { icon: 'check', title: 'Fewer errors', desc: 'Let systems handle the copy-paste work people get wrong.' },
+          { icon: 'link', title: 'Connects your tools', desc: 'Integrations so the software you already use talks to itself.' },
+          { icon: 'sparkle', title: 'Practical, not hype', desc: 'Proven tools chosen to fit how you actually work.' }
+        ],
+        testimonials: [
+          { quote: 'Tim automated the boring half of my admin. I\u2019ve genuinely got an afternoon a week back \u2014 it paid for itself immediately.', author: 'Priya Nair', role: 'Apex Ltd' },
+          { quote: 'The assistant handles the questions I used to answer twenty times a day. It\u2019s like having an extra pair of hands.', author: 'Tom Beckett', role: 'Beckett Lettings' },
+          { quote: 'Everything just talks to each other now. No more copying data between systems and hoping I got it right.', author: 'Laura Kemp', role: 'Kemp Studio' }
+        ],
+        faqs: [
+          { q: 'Do I need to be technical?', a: 'Not at all. I handle the setup and hand you something simple that just works, with training if you need it.' },
+          { q: 'Which tools do you work with?', a: 'I work with the tools you already use where possible, and connect them with proven automation platforms.' },
+          { q: 'Is my data safe?', a: 'Yes. I use reputable, secure platforms and only ever automate what you\u2019re comfortable with.' },
+          { q: 'Where do we start?', a: 'With a quick chat about where your time goes. I\u2019ll spot the easy wins and suggest what to automate first.' }
+        ]
+      }
+    };
+  }
+  renderVals(){
+    const p = this.state.page;
+    const svcMap = this.serviceData();
+    const svcKey = p.startsWith('service-') ? p.slice('service-'.length) : null;
+    const svc = svcKey ? svcMap[svcKey] : null;
+    const nextSvc = svc ? svcMap[svc.next] : null;
+    const up = [
+      { name: 'Harbour Co.', tag: 'Web Design' },
+      { name: 'Northside', tag: 'SEO' },
+      { name: 'Bloom Studio', tag: 'Hosting' },
+      { name: 'Apex Ltd', tag: 'Automation' },
+      { name: 'Coastal Cafe', tag: 'Web Design' }
+    ];
+    const down = [
+      { name: 'Granite Build', tag: 'Web Design' },
+      { name: 'Tide & Co.', tag: 'SEO' },
+      { name: 'Meadow Health', tag: 'AI Tools' },
+      { name: 'Forge Digital', tag: 'Hosting' },
+      { name: 'Vale Interiors', tag: 'Web Design' }
+    ];
+    const nav = (k) => {
+      const on = k === 'services' ? (p === 'services' || !!svc) : p === k;
+      return {
+        cursor: 'pointer',
+        color: on ? '#131313' : '#3a3a38',
+        fontWeight: on ? 600 : 500,
+        paddingBottom: '3px',
+        borderBottom: on ? '1.5px solid #131313' : '1.5px solid transparent',
+        transition: 'color .15s'
+      };
+    };
+    const a = this.state.activeSvc;
+    const slot = (i) => ({ position: 'absolute', inset: 0, opacity: a === i ? 1 : 0, transition: 'opacity .6s ease', pointerEvents: a === i ? 'auto' : 'none' });
+    const idx = this.state.workIdx || 0;
+    const projects = this.workProjects();
+    const mkImg = (src, alt) => src ? React.createElement('img', { src: src, alt: alt, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' } }) : null;
+    const dir = this.state.workDir || 1;
+    const n = projects.length;
+    const wIdx = this.state.workIdx || 0;
+    const animOn = this.state.workAnim !== false;
+    const loopCards = projects.concat(projects);
+    const workTrackStyle = {
+      display: 'flex',
+      width: (loopCards.length * 50) + '%',
+      marginLeft: '-' + (wIdx * 50) + '%',
+      transition: animOn ? 'margin-left .55s cubic-bezier(.4,0,.2,1)' : 'none'
+    };
+    const workCards = loopCards.map((pr) => Object.assign({}, pr, {
+      imgEl: mkImg(pr.img, pr.name),
+      tag: pr.services.join(' \u00b7 '),
+      cellStyle: { width: (100 / loopCards.length) + '%', flex: '0 0 auto', boxSizing: 'border-box', paddingRight: '24px' }
+    }));
+    const heroCards = projects.map(pr => ({ name: pr.name, tag: pr.services.join(' \u00b7 '), imgEl: mkImg(pr.img, pr.name) }));
+    const heroDown = heroCards.slice(2).concat(heroCards.slice(0, 2));
+    const ICONS = {
+      pencil: ['M12 20h9', 'M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z'],
+      bolt: ['M11 2L4 13h6l-1 9 8-12h-6l1-8z'],
+      target: ['M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0-18 0', 'M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0', 'M12 12m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0'],
+      refresh: ['M4 12a8 8 0 0 1 13.7-5.7L20 8', 'M20 3v5h-5', 'M20 12a8 8 0 0 1-13.7 5.7L4 16', 'M4 21v-5h5'],
+      gauge: ['M4 19a8 8 0 1 1 16 0', 'M12 19l4-6'],
+      shield: ['M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z', 'M9 12l2 2 4-4'],
+      headset: ['M4 14v-2a8 8 0 0 1 16 0v2', 'M4 14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z', 'M20 14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z', 'M20 20a4 4 0 0 1-4 4h-2'],
+      search: ['M11 11m-7 0a7 7 0 1 0 14 0a7 7 0 1 0-14 0', 'M21 21l-4.3-4.3'],
+      pin: ['M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21z', 'M12 9.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0'],
+      chart: ['M5 20V11', 'M10 20V5', 'M15 20v-6', 'M20 20v-9'],
+      clock: ['M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0-18 0', 'M12 7v5l3.5 2'],
+      link: ['M9 15l6-6', 'M10.5 6.5l1.8-1.8a4 4 0 0 1 5.7 5.7l-1.8 1.8', 'M13.5 17.5l-1.8 1.8a4 4 0 0 1-5.7-5.7l1.8-1.8'],
+      sparkle: ['M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17l-1.9-5.1L4.5 10l5.6-1.4L12 3z'],
+      check: ['M20 6L9 17l-5-5']
+    };
+    const mkIcon = (name) => React.createElement('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: '#131313', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round', style: { width: '24px', height: '24px' } }, (ICONS[name] || []).map((d, i) => React.createElement('path', { key: i, d: d })));
+    const svcView = svc ? Object.assign({}, svc, {
+      numLabel: svc.num + ' / 04',
+      testimonialsLoop: svc.testimonials.concat(svc.testimonials),
+      examples: svc.examples.map(ex => Object.assign({}, ex, { imgEl: ex.img ? mkImg(ex.img, ex.name) : null })),
+      differentiators: svc.differentiators.map(d => Object.assign({}, d, { iconEl: mkIcon(d.icon) })),
+      faqs: svc.faqs.map((f, i) => Object.assign({}, f, {
+        open: this.state.openFaq === i,
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i })),
+        iconStyle: { display: 'inline-block', transition: 'transform .2s', transform: this.state.openFaq === i ? 'rotate(45deg)' : 'none' }
+      }))
+    }) : null;
+    const menuOpen = !!this.state.svcMenu;
+    const svcMenuStyle = {
+      position: 'absolute', top: '100%', left: 0, right: 0, paddingTop: '14px', zIndex: 60,
+      opacity: menuOpen ? 1 : 0,
+      transform: menuOpen ? 'translateY(0)' : 'translateY(-8px)',
+      visibility: menuOpen ? 'visible' : 'hidden',
+      pointerEvents: menuOpen ? 'auto' : 'none',
+      transition: 'opacity .17s ease, transform .17s ease'
+    };
+    const svcCaretStyle = { display: 'inline-flex', color: '#9a9a93', transition: 'transform .18s ease', transform: menuOpen ? 'rotate(180deg)' : 'none' };
+    return {
+      svc: svcView,
+      isService: !!svc,
+      openSvcMenu: () => this.openSvcMenu(),
+      closeSvcMenu: () => this.closeSvcMenu(),
+      svcMenuStyle: svcMenuStyle,
+      svcCaretStyle: svcCaretStyle,
+      goDesign: () => this.go('service-design'),
+      goHosting: () => this.go('service-hosting'),
+      goSeo: () => this.go('service-seo'),
+      goAi: () => this.go('service-ai'),
+      workTrackStyle: workTrackStyle,
+      workCards: workCards,
+      prevWork: () => this.prevWork(),
+      nextWork: () => this.nextWork(),
+      cardsUp: heroCards.concat(heroCards),
+      cardsDown: heroDown.concat(heroDown),
+      svc0Style: slot(0),
+      svc1Style: slot(1),
+      svc2Style: slot(2),
+      svc3Style: slot(3),
+      isHome: p === 'home',
+      isServices: p === 'services',
+      isAbout: p === 'about',
+      isWork: p === 'work',
+      isContact: p === 'contact',
+      isPrivacy: p === 'privacy',
+      goHome: () => this.go('home'),
+      goServices: () => this.go('service-design'),
+      goAbout: () => this.go('about'),
+      goWork: () => this.go('work'),
+      goContact: () => this.go('contact'),
+      goPrivacy: () => this.go('privacy'),
+      navServices: nav('services'),
+      navWork: nav('work'),
+      navAbout: nav('about')
+    };
+  }
+}
+</script>
+</body>
+</html>
