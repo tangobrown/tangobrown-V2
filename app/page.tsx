@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-cream">
         <div className="container-tb grid grid-cols-1 md:grid-cols-[1fr_720px] gap-12 items-center min-h-[680px]">
           <div>
             <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-[22px]">

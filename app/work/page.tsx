@@ -12,16 +12,18 @@ export default function WorkPage() {
   return (
     <>
       {/* Header */}
-      <section className="container-tb pt-24 pb-14">
-        <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
-          Selected work
+      <section className="bg-cream">
+        <div className="container-tb pt-24 pb-14">
+          <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
+            Selected work
+          </div>
+          <h1 className="font-heading uppercase font-bold text-[64px] leading-[1.04] tracking-[-0.03em] max-w-[16ch]">
+            A few projects I&apos;m proud of.
+          </h1>
+          <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[52ch] mt-7">
+            Websites, hosting, SEO and automation for UK businesses.
+          </p>
         </div>
-        <h1 className="font-heading uppercase font-bold text-[64px] leading-[1.04] tracking-[-0.03em] max-w-[16ch]">
-          A few projects I&apos;m proud of.
-        </h1>
-        <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[52ch] mt-7">
-          Websites, hosting, SEO and automation for UK businesses.
-        </p>
       </section>
 
       {/* Project grid */}

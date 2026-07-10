@@ -51,25 +51,31 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <section className="max-w-[820px] mx-auto py-24 px-14">
-      <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-[22px]">
-        Legal
-      </div>
-      <h1 className="font-heading uppercase font-bold text-[52px] leading-[1.05] tracking-[-0.03em]">
-        Privacy Policy
-      </h1>
-      <p className="text-base text-muted-faint mt-4">Last updated July 2026</p>
-
-      <div className="mt-11 flex flex-col gap-9">
-        {sections.map((s) => (
-          <div key={s.heading}>
-            <h2 className="font-heading uppercase font-bold text-[22px] mb-3">
-              {s.heading}
-            </h2>
-            <p className="text-[17px] leading-[1.65] text-muted">{s.body}</p>
+    <>
+      <section className="bg-cream">
+        <div className="max-w-[820px] mx-auto pt-24 pb-16 px-14">
+          <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-[22px]">
+            Legal
           </div>
-        ))}
-      </div>
-    </section>
+          <h1 className="font-heading uppercase font-bold text-[52px] leading-[1.05] tracking-[-0.03em]">
+            Privacy Policy
+          </h1>
+          <p className="text-base text-muted-faint mt-4">Last updated July 2026</p>
+        </div>
+      </section>
+
+      <section className="max-w-[820px] mx-auto pt-16 pb-24 px-14">
+        <div className="flex flex-col gap-9">
+          {sections.map((s) => (
+            <div key={s.heading}>
+              <h2 className="font-heading uppercase font-bold text-[22px] mb-3">
+                {s.heading}
+              </h2>
+              <p className="text-[17px] leading-[1.65] text-muted">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

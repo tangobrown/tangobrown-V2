@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="container-tb pt-24 pb-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+    <section className="bg-cream">
+      <div className="container-tb pt-24 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
         <div>
           <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
             Contact
@@ -56,6 +57,7 @@ export default function ContactPage() {
           </div>
         </div>
         <ContactForm />
+        </div>
       </div>
     </section>
   );

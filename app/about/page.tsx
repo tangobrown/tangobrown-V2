@@ -28,8 +28,9 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="container-tb pt-24 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-16 items-start">
+      <section className="bg-cream">
+        <div className="container-tb pt-24 pb-16">
+          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-16 items-start">
           <div>
             <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
               About
@@ -57,6 +58,7 @@ export default function AboutPage() {
           </div>
           <div className="h-[520px] w-full bg-placeholder-soft border-2 border-border flex items-center justify-center text-muted-faint text-sm">
             Portrait
+          </div>
           </div>
         </div>
       </section>
