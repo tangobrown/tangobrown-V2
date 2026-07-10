@@ -21,6 +21,14 @@ export const projects: Project[] = [
     image: "/devon-joinery.jpg",
   },
   {
+    name: "PIM-PAM",
+    services: ["Website Design", "Branding"],
+    overview:
+      "Website and brand identity for the World Bank Group's public infrastructure investment and asset governance platform — a digital toolkit used by governments worldwide.",
+    url: "https://pim-pam.net",
+    image: "/pim-pam.jpg",
+  },
+  {
     name: "505 Economics",
     services: ["Website Design"],
     overview:
@@ -56,6 +64,7 @@ export const heroUpCards: HeroCard[] = [
 ];
 
 export const heroDownCards: HeroCard[] = [
+  { name: "PIM-PAM", tag: "Web + Branding", image: "/pim-pam.jpg" },
   { name: "Granite Build", tag: "Web Design" },
   { name: "Tide & Co.", tag: "SEO" },
   { name: "Meadow Health", tag: "AI Tools" },
