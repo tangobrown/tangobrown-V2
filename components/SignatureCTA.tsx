@@ -36,15 +36,16 @@ export default function SignatureCTA({
 
   // Wipe implementation: background-image is a solid accent gradient,
   // background-position stays at "left center", background-size grows 0% -> 100%.
-  // Text is always white on hover regardless of variant:
-  // - light variant: dark button base (white text on ink); hover keeps
-  //   text white as the orange fills in.
-  // - dark variant: white button base (ink text on white); hover flips
-  //   text to white as the orange fills in.
+  // Text is always white on hover regardless of variant. hover:text-white
+  // is explicit on both variants — the global a:hover rule in
+  // globals.css turns anchors accent-orange, which has HIGHER
+  // specificity than a plain .text-white utility. Only a hover-variant
+  // Tailwind class ((0,0,2,0)) beats a:hover ((0,0,1,1)), so both
+  // variants need it even though the light one is already white at rest.
   const variantClasses =
     variant === "dark"
       ? "bg-white text-ink hover:text-white [background-image:linear-gradient(#ff751f,#ff751f)]"
-      : "bg-ink text-white [background-image:linear-gradient(#ff751f,#ff751f)]";
+      : "bg-ink text-white hover:text-white [background-image:linear-gradient(#ff751f,#ff751f)]";
 
   return (
     <Link

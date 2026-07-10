@@ -22,7 +22,10 @@ export default function UnderlineLink({
   className = "",
 }: Props) {
   const classes = [
-    "inline-flex items-center gap-1.5 text-sm font-semibold text-ink pb-1 no-underline",
+    // hover:text-ink is needed to override the global a:hover accent
+    // color; the two-layer gradient underline is what actually
+    // signals the hover state on this component.
+    "inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-ink pb-1 no-underline",
     // two stacked gradient underlines; accent grows 0% -> 100%, black stays 100%
     "[background-image:linear-gradient(#ff751f,#ff751f),linear-gradient(#131313,#131313)]",
     "bg-no-repeat [background-position:left_100%,left_100%]",
