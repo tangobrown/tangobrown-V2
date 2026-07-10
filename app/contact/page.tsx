@@ -18,7 +18,7 @@ export default function ContactPage() {
           <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em]">
             Let&apos;s start something.
           </h1>
-          <p className="text-[18px] leading-[1.6] text-muted mt-7 max-w-[42ch]">
+          <p className="text-[18px] font-semibold leading-[1.6] text-muted mt-7 max-w-[42ch]">
             Tell me a little about your business and what you&apos;re hoping to
             achieve. I&apos;ll get back to you within one working day.
           </p>

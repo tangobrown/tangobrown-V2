@@ -33,7 +33,7 @@ export default function Home() {
             <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em] max-w-[14ch]">
               Your growth is my mission.
             </h1>
-            <p className="text-[19px] leading-[1.55] text-muted max-w-[46ch] mt-[22px]">
+            <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[46ch] mt-[22px]">
               Technology moves fast. I keep your business ahead of it with
               stunning websites and smart AI automation to fuel growth online.
             </p>

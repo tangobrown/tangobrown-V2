@@ -37,7 +37,7 @@ export default function AboutPage() {
             <h1 className="font-heading uppercase font-bold text-[58px] leading-[1.05] tracking-[-0.03em]">
               Hi, I&apos;m Tim Brown.
             </h1>
-            <p className="text-[19px] leading-[1.6] text-muted mt-7">
+            <p className="text-[19px] font-semibold leading-[1.6] text-muted mt-7">
               I&apos;m a freelance digital consultant based in Exeter, working
               with businesses across the UK. I help them build a presence
               online that looks the part and actually performs.
