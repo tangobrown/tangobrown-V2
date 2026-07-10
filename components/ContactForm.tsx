@@ -121,9 +121,9 @@ export default function ContactForm() {
           type="submit"
           disabled={submitting}
           className={[
-            "font-heading italic font-bold text-[15px] text-white bg-ink",
+            "font-heading italic font-bold text-[15px] text-white hover:text-ink bg-ink",
             "[background-image:linear-gradient(#ff751f,#ff751f)] bg-no-repeat bg-left [background-size:0%_100%]",
-            "hover:[background-size:100%_100%] transition-[background-size] duration-[180ms] ease-linear",
+            "hover:[background-size:100%_100%] transition-[background-size,color] duration-[180ms] ease-linear",
             "flex items-center justify-center gap-2 py-4 px-4 uppercase",
             submitting ? "opacity-70 cursor-wait" : "",
           ].join(" ")}
