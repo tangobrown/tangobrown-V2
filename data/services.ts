@@ -71,7 +71,7 @@ export const services: Service[] = [
       "A website should do more than look good. It should earn its place by turning visitors into customers.",
     examples: [
       {
-        image: "/devon-joinery.png",
+        image: "/devon-joinery.jpg",
         name: "Devon Joinery",
         tag: "Website Build",
         description:

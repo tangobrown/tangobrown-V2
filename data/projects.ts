@@ -18,7 +18,7 @@ export const projects: Project[] = [
     overview:
       "A bespoke website for an Exeter joinery firm — built to showcase their craftsmanship and turn visitors into estimate enquiries.",
     url: "https://www.devonjoinery.co.uk",
-    image: "/devon-joinery.png",
+    image: "/devon-joinery.jpg",
   },
   {
     name: "505 Economics",
@@ -47,7 +47,7 @@ export interface HeroCard {
 }
 
 export const heroUpCards: HeroCard[] = [
-  { name: "Devon Joinery", tag: "Web Design", image: "/devon-joinery.png" },
+  { name: "Devon Joinery", tag: "Web Design", image: "/devon-joinery.jpg" },
   { name: "Harbour Co.", tag: "Web Design" },
   { name: "Northside", tag: "SEO" },
   { name: "Bloom Studio", tag: "Hosting" },
