@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight, Manrope } from "next/font/google";
+import { Inter_Tight, Public_Sans } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -12,7 +12,7 @@ const heading = Inter_Tight({
   display: "swap",
 });
 
-const body = Manrope({
+const body = Public_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-body",
