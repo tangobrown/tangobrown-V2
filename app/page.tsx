@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SignatureCTA from "@/components/SignatureCTA";
 import UnderlineLink from "@/components/UnderlineLink";
@@ -50,9 +51,15 @@ export default function Home() {
       {/* About band (dark) */}
       <section className="bg-dark-bg text-white">
         <div className="container-tb grid grid-cols-1 md:grid-cols-[500px_1fr] gap-[72px] items-stretch min-h-[620px]">
-          {/* Photo placeholder — client will supply real portrait */}
-          <div className="w-full h-full min-h-[400px] bg-dark-card border-2 border-dark-border flex items-center justify-center text-dark-label text-sm">
-            Portrait
+          {/* Portrait */}
+          <div className="relative w-full h-full min-h-[400px]">
+            <Image
+              src="/tim-portrait.jpg"
+              alt="Tim Brown"
+              fill
+              sizes="(max-width: 768px) 100vw, 500px"
+              className="object-cover"
+            />
           </div>
           <div className="py-24 self-center">
             <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-dark-label mb-[26px]">
