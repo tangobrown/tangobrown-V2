@@ -71,7 +71,7 @@ export default function PrivacyPage() {
               <h2 className="font-heading uppercase font-bold text-[22px] mb-3">
                 {s.heading}
               </h2>
-              <p className="text-[17px] leading-[1.65] text-muted">{s.body}</p>
+              <p className="text-[17px] leading-[1.65] text-ink">{s.body}</p>
             </div>
           ))}
         </div>

@@ -48,7 +48,7 @@ export default async function ServicePage({
             <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em]">
               {svc.title}
             </h1>
-            <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[48ch] mt-6">
+            <p className="text-[19px] font-semibold leading-[1.55] text-ink max-w-[48ch] mt-6">
               {svc.lead}
             </p>
             <div className="mt-[30px]">
@@ -103,7 +103,7 @@ export default async function ServicePage({
                     {ex.tag}
                   </div>
                 </div>
-                <p className="text-[15px] leading-[1.55] text-muted-soft mt-2">
+                <p className="text-[15px] leading-[1.55] text-ink mt-2">
                   {ex.description}
                 </p>
               </div>
@@ -130,7 +130,7 @@ export default async function ServicePage({
                 <div className="font-heading uppercase font-bold text-[19px] mb-2 tracking-[-0.01em]">
                   {d.title}
                 </div>
-                <div className="text-[15px] leading-[1.55] text-muted-soft">
+                <div className="text-[15px] leading-[1.55] text-ink">
                   {d.description}
                 </div>
               </div>

@@ -38,19 +38,19 @@ export default function AboutPage() {
             <h1 className="font-heading uppercase font-bold text-[58px] leading-[1.05] tracking-[-0.03em]">
               Hi, I&apos;m Tim Brown.
             </h1>
-            <p className="text-[19px] font-semibold leading-[1.6] text-muted mt-7">
+            <p className="text-[19px] font-semibold leading-[1.6] text-ink mt-7">
               I&apos;m a freelance digital consultant based in Exeter, working
               with businesses across the UK. I help them build a presence
               online that looks the part and actually performs.
             </p>
-            <p className="text-[17px] leading-[1.65] text-muted mt-5">
+            <p className="text-[17px] leading-[1.65] text-ink mt-5">
               For me, that means joining up the pieces most businesses juggle
               separately — design, hosting, SEO and automation — under one
               roof, with one person who&apos;s accountable for the whole thing.
               No agency overheads, no account managers, no jargon. Just clear,
               honest work that moves the needle.
             </p>
-            <p className="text-[17px] leading-[1.65] text-muted mt-5">
+            <p className="text-[17px] leading-[1.65] text-ink mt-5">
               Whether you&apos;re starting from scratch or improving what
               you&apos;ve already got, I&apos;ll help you make decisions that
               pay off long after the project ends.
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div className="font-heading uppercase font-bold text-[22px] mb-2.5">
                 {v.title}
               </div>
-              <div className="text-[15px] leading-[1.55] text-muted-soft">
+              <div className="text-[15px] leading-[1.55] text-ink">
                 {v.description}
               </div>
             </div>

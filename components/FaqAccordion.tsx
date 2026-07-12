@@ -47,7 +47,7 @@ export default function FaqAccordion({ faqs }: Props) {
               </span>
             </div>
             {open && (
-              <p className="text-base leading-[1.6] text-muted mt-4 max-w-[64ch]">
+              <p className="text-base leading-[1.6] text-ink mt-4 max-w-[64ch]">
                 {f.answer}
               </p>
             )}

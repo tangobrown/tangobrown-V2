@@ -20,7 +20,7 @@ export default function WorkPage() {
           <h1 className="font-heading uppercase font-bold text-[64px] leading-[1.04] tracking-[-0.03em] max-w-[16ch]">
             A few projects I&apos;m proud of.
           </h1>
-          <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[52ch] mt-7">
+          <p className="text-[19px] font-semibold leading-[1.55] text-ink max-w-[52ch] mt-7">
             Websites, hosting, SEO and automation for UK businesses.
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function WorkPage() {
                   {p.services.join(" · ")}
                 </div>
               </div>
-              <p className="text-base text-muted-soft mt-1.5 max-w-[46ch]">
+              <p className="text-base text-ink mt-1.5 max-w-[46ch]">
                 {p.overview}
               </p>
             </article>

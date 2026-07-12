@@ -26,7 +26,7 @@ export default function Footer() {
             <div className="font-heading uppercase font-bold text-lg text-ink mb-4">
               Tim Brown
             </div>
-            <div className="space-y-1.5 text-[15px] text-muted mb-6">
+            <div className="space-y-1.5 text-[15px] text-ink mb-6">
               <div>
                 <a
                   href="mailto:tim@tangobrown.com"
@@ -43,7 +43,7 @@ export default function Footer() {
                   07594 404 388
                 </a>
               </div>
-              <div className="text-muted-soft">Exeter, Devon</div>
+              <div className="text-ink">Exeter, Devon</div>
             </div>
           </div>
 
@@ -57,7 +57,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="no-underline text-muted hover:text-ink transition-colors"
+                    className="no-underline text-ink hover:text-ink transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="no-underline text-muted hover:text-ink transition-colors"
+                    className="no-underline text-ink hover:text-ink transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div className="flex flex-wrap items-baseline justify-between gap-4 pt-6 border-t-2 border-border-light text-sm text-muted-soft">
+        <div className="flex flex-wrap items-baseline justify-between gap-4 pt-6 border-t-2 border-border-light text-sm text-ink">
           <div>© {currentYear} Tango Brown — Tim Brown</div>
           <div>Digital Growth Consultant</div>
         </div>

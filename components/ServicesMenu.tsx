@@ -151,7 +151,7 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
               <div className="font-heading uppercase font-bold text-base mb-2 text-ink">
                 {title}
               </div>
-              <p className="text-[13.5px] leading-[1.5] text-muted-soft">
+              <p className="text-[13.5px] leading-[1.5] text-ink">
                 {description}
               </p>
             </Link>

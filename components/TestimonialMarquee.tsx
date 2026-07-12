@@ -52,7 +52,7 @@ export default function TestimonialMarquee({ testimonials }: Props) {
               <div className="mt-6 text-[15px] font-semibold text-white">
                 {t.author}
               </div>
-              <div className="text-[13px] text-dark-label mt-[3px]">
+              <div className="text-[13px] text-white mt-[3px]">
                 {t.role}
               </div>
             </div>

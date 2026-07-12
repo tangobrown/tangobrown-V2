@@ -163,7 +163,7 @@ export default function WorkCarousel({ projects, perView = 2 }: Props) {
                   {project.services.join(" · ")}
                 </div>
               </div>
-              <p className="text-base leading-[1.6] text-muted-soft mt-2 max-w-[46ch]">
+              <p className="text-base leading-[1.6] text-ink mt-2 max-w-[46ch]">
                 {project.overview}
               </p>
               {project.url && (

@@ -34,7 +34,7 @@ export default function Home() {
             <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em] max-w-[14ch]">
               Your growth is my mission.
             </h1>
-            <p className="text-[19px] font-semibold leading-[1.55] text-muted max-w-[46ch] mt-[22px]">
+            <p className="text-[19px] font-semibold leading-[1.55] text-ink max-w-[46ch] mt-[22px]">
               Technology moves fast. I keep your business ahead of it with
               stunning websites and smart AI automation to fuel growth online.
             </p>
@@ -68,12 +68,12 @@ export default function Home() {
             <h2 className="font-heading uppercase font-bold text-[45px] leading-[1.08] tracking-[-0.025em]">
               Hi, I&apos;m Tim Brown.
             </h2>
-            <p className="text-[18px] leading-[1.6] text-dark-text mt-[26px] max-w-[50ch]">
+            <p className="text-[18px] leading-[1.6] text-white mt-[26px] max-w-[50ch]">
               I&apos;m a freelance digital growth consultant based in Exeter,
               working with businesses across the UK. I help them build a
               presence online that looks the part and actually performs.
             </p>
-            <p className="text-base leading-[1.65] text-dark-soft mt-[18px] max-w-[52ch]">
+            <p className="text-base leading-[1.65] text-white mt-[18px] max-w-[52ch]">
               I join up the pieces most businesses juggle separately — design,
               hosting, SEO and automation — under one roof, with one person
               accountable for the whole thing. No agency overheads, no jargon.
@@ -125,7 +125,7 @@ export default function Home() {
                   <div className="font-heading uppercase font-semibold text-[24px] mb-2.5">
                     {s.title}
                   </div>
-                  <div className="text-base leading-[1.5] text-muted-soft">
+                  <div className="text-base leading-[1.5] text-ink">
                     {s.short}
                   </div>
                 </div>
