@@ -52,6 +52,7 @@ export interface Service {
   next: ServiceSlug;
   lead: string;
   quote: string;
+  heroImage?: string; // /public path; 1:1 aspect, ~1000x1000 recommended
   examples: ServiceExample[];
   differentiators: ServiceDifferentiator[];
   testimonials: ServiceTestimonial[];
@@ -69,6 +70,7 @@ export const services: Service[] = [
     lead: "Bespoke websites designed around your goals and your customers — fast, accessible and built to turn visitors into enquiries. No templates, no bloat.",
     quote:
       "A website should do more than look good. It should earn its place by turning visitors into customers.",
+    heroImage: "/vowles-hero.jpg",
     examples: [
       {
         image: "/devon-joinery.jpg",

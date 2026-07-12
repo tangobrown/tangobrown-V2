@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import SignatureCTA from "@/components/SignatureCTA";
 import UnderlineLink from "@/components/UnderlineLink";
@@ -55,8 +56,21 @@ export default async function ServicePage({
               <SignatureCTA href="/contact">Start a project</SignatureCTA>
             </div>
           </div>
-          <div className="self-end h-[500px] w-full bg-placeholder-soft border-2 border-border flex items-center justify-center text-muted-faint text-sm">
-            Service image
+          <div className="self-end relative h-[500px] w-full">
+            {svc.heroImage ? (
+              <Image
+                src={svc.heroImage}
+                alt={`${svc.title} — service`}
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                priority
+                className="object-cover"
+              />
+            ) : (
+              <div className="h-full w-full bg-placeholder-soft border-2 border-border flex items-center justify-center text-muted-faint text-sm">
+                Service image
+              </div>
+            )}
           </div>
         </div>
       </section>
