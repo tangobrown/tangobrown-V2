@@ -105,7 +105,7 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
           "cursor-pointer transition-colors",
           active
             ? "text-ink font-semibold border-b-[1.5px] border-ink pb-0.5"
-            : "text-muted-soft hover:text-ink",
+            : "text-ink font-medium hover:text-ink",
         ].join(" ")}
       >
         Services
@@ -116,8 +116,8 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
         fill="currentColor"
         aria-hidden="true"
         className={[
-          "w-[13px] h-[13px] transition-transform duration-200",
-          open ? "rotate-180 text-ink" : "text-muted-soft",
+          "w-[13px] h-[13px] transition-transform duration-200 text-ink",
+          open ? "rotate-180" : "",
         ].join(" ")}
       >
         <path d="M13.0001 16.1716L18.3641 10.8076L19.7783 12.2218L12.0001 20L4.22192 12.2218L5.63614 10.8076L11.0001 16.1716V4H13.0001V16.1716Z" />

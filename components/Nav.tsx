@@ -34,7 +34,7 @@ export default function Nav() {
             className={
               isActive("/work")
                 ? "text-ink font-semibold border-b-[1.5px] border-ink pb-0.5"
-                : "text-muted-soft hover:text-ink transition-colors"
+                : "text-ink font-medium hover:text-ink transition-colors"
             }
           >
             Work
@@ -44,7 +44,7 @@ export default function Nav() {
             className={
               isActive("/about")
                 ? "text-ink font-semibold border-b-[1.5px] border-ink pb-0.5"
-                : "text-muted-soft hover:text-ink transition-colors"
+                : "text-ink font-medium hover:text-ink transition-colors"
             }
           >
             About
