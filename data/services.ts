@@ -78,16 +78,17 @@ export const services: Service[] = [
           "A bespoke site for an Exeter joinery firm — built to showcase craftsmanship and drive estimate enquiries.",
       },
       {
+        image: "/pim-pam.jpg",
+        name: "PIM-PAM",
+        tag: "Website & Branding",
+        description:
+          "Website and brand identity for the World Bank Group's public infrastructure investment platform.",
+      },
+      {
         name: "505 Economics",
         tag: "Website Build",
         description:
           "A clean, credible site for an economics consultancy, making complex research approachable.",
-      },
-      {
-        name: "Coastal Café",
-        tag: "Website Build",
-        description:
-          "A warm, mobile-first site with online booking that keeps more tables full.",
       },
     ],
     differentiators: [
