@@ -50,10 +50,24 @@ const items: Item[] = [
 /**
  * Services nav item + hover mega-menu.
  *
- * Opens on mouseenter on either the trigger or the panel; closes on
- * mouseleave with a ~160ms delay so the pointer can travel from the
- * trigger down to the panel without collapsing it. Caret rotates 180°
- * when open; the panel fades + slides 8px down from hidden to visible.
+ * Hover machinery:
+ * - A single outer div holds both the trigger and the panel, with
+ *   mouseenter/mouseleave handlers on it. Because the panel is a
+ *   descendant, moving the cursor from the trigger into the panel
+ *   never fires mouseleave on the outer container.
+ * - The panel wrapper has 20px padding-top which acts as an invisible
+ *   "bridge" so the cursor never crosses empty space while travelling
+ *   from the trigger down to the visible panel content.
+ * - Close is delayed 300ms so a slow cursor movement never accidentally
+ *   collapses the menu.
+ *
+ * Stacking: the parent <header> is z-50 with a translucent blurred
+ * background. Any child z-index would compete inside the header's
+ * stacking context, so the panel visually sits under the blurred bar
+ * if it isn't lifted above the header's own layer. Fix: put the
+ * panel wrapper at z-[60] and, more importantly, let the outer
+ * container be `static` (not creating a stacking context) so the
+ * panel's z-index actually takes effect against page content below.
  */
 export default function ServicesMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
@@ -70,7 +84,7 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
   };
   const closeSoon = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setOpen(false), 160);
+    closeTimer.current = setTimeout(() => setOpen(false), 300);
   };
 
   useEffect(() => {
@@ -102,23 +116,23 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
         fill="currentColor"
         aria-hidden="true"
         className={[
-          "w-[11px] h-[11px] transition-transform duration-200",
+          "w-[13px] h-[13px] transition-transform duration-200",
           open ? "rotate-180 text-ink" : "text-muted-soft",
         ].join(" ")}
       >
-        <path d="M12 15L6 9H18L12 15Z" />
+        <path d="M13.0001 16.1716L18.3641 10.8076L19.7783 12.2218L12.0001 20L4.22192 12.2218L5.63614 10.8076L11.0001 16.1716V4H13.0001V16.1716Z" />
       </svg>
 
       {/* Mega-menu panel */}
       <div
-        onMouseEnter={openNow}
-        onMouseLeave={closeSoon}
         className={[
-          "absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[980px] max-w-[calc(100vw-64px)] z-40",
-          "transition-all duration-200",
+          // 20px pt bridge so the cursor never leaves the outer div
+          // while travelling from the trigger down to the visible panel.
+          "absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[980px] max-w-[calc(100vw-64px)] z-[60]",
+          "transition-opacity duration-200",
           open
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none",
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
         ].join(" ")}
       >
         <div
