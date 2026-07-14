@@ -107,14 +107,14 @@ export default function Home() {
           </h2>
           <UnderlineLink href="/services/websites">All services</UnderlineLink>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x-2 md:divide-border">
           {services.map((s) => {
             const Icon = serviceIcons[s.slug];
             return (
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="border-2 border-border p-[26px] min-h-[300px] flex flex-col justify-between transition-colors hover:border-[#8f8d83] no-underline"
+                className="px-8 py-8 md:first:pl-0 md:last:pr-0 min-h-[280px] flex flex-col justify-between no-underline"
               >
                 <div className="text-ink">
                   <Icon size={38} />
