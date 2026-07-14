@@ -114,7 +114,7 @@ export default function Home() {
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="px-8 py-8 md:first:pl-0 md:last:pr-0 min-h-[280px] flex flex-col justify-between no-underline"
+                className="p-10 min-h-[280px] flex flex-col justify-between no-underline transition-colors hover:bg-cream"
               >
                 <div className="text-ink">
                   <Icon size={38} />
