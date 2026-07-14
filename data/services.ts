@@ -1,6 +1,5 @@
-// Service data lifted verbatim from the design handoff's serviceData().
-// URL slug ("website-builds") is the canonical key. `next` links each
-// service to its successor for a "next service" pointer if we want one later.
+// Service data — 3 services (Websites, Optimisation, AI & Automation).
+// Slug is the URL segment; `next` chains each service to its successor.
 
 import type { ServiceSlug } from "@/components/ServiceIcons";
 
@@ -46,7 +45,7 @@ export interface ServiceFaq {
 
 export interface Service {
   slug: ServiceSlug;
-  num: string; // "01" .. "04"
+  num: string; // "01" .. "03"
   title: string;
   short: string; // one-line for mega-menu / cards
   next: ServiceSlug;
@@ -61,12 +60,12 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    slug: "website-builds",
+    slug: "websites",
     num: "01",
-    title: "Website Builds",
+    title: "Websites",
     short:
-      "Bespoke, fast sites built around your goals and made to convert.",
-    next: "website-hosting",
+      "Bespoke, fast websites built around your goals and made to convert.",
+    next: "optimisation",
     lead: "Bespoke websites designed around your goals and your customers — fast, accessible and built to turn visitors into enquiries. No templates, no bloat.",
     quote:
       "A website should do more than look good. It should earn its place by turning visitors into customers.",
@@ -75,7 +74,7 @@ export const services: Service[] = [
       {
         image: "/devon-joinery.jpg",
         name: "Devon Joinery",
-        tag: "Website Build",
+        tag: "Website",
         description:
           "A bespoke site for an Exeter joinery firm — built to showcase craftsmanship and drive estimate enquiries.",
       },
@@ -88,7 +87,7 @@ export const services: Service[] = [
       },
       {
         name: "505 Economics",
-        tag: "Website Build",
+        tag: "Website",
         description:
           "A clean, credible site for an economics consultancy, making complex research approachable.",
       },
@@ -112,50 +111,17 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "website-hosting",
+    slug: "optimisation",
     num: "02",
-    title: "Website Hosting",
+    title: "Optimisation",
     short:
-      "Secure, reliable hosting with updates, backups and support handled.",
-    next: "seo",
-    lead: "Fully-managed hosting so your site stays fast, secure and online. Updates, backups and monitoring are handled for you — one less thing to think about.",
-    quote:
-      "Once your site is live, it should just work — quietly, reliably, without you ever having to think about it.",
-    examples: [
-      { name: "Zero-downtime migration", tag: "Migration", description: "Moved a slow, insecure site onto fast, managed servers with no downtime for the client." },
-      { name: "Always-on monitoring", tag: "Uptime", description: "Proactive alerts and quick fixes keep client sites available around the clock." },
-      { name: "Backups that saved the day", tag: "Recovery", description: "Daily backups meant a client’s site was restored in minutes, not days." },
-    ],
-    differentiators: [
-      { icon: "gauge", title: "Always online", description: "Uptime monitoring and rapid fixes keep your site available." },
-      { icon: "shield", title: "Secure by default", description: "SSL, firewalls and updates protect your site and your customers." },
-      { icon: "refresh", title: "Backed up daily", description: "Automatic daily backups mean nothing is ever lost." },
-      { icon: "headset", title: "One point of contact", description: "No call centres — you deal with me, and I know your site." },
-    ],
-    testimonials: [
-      { quote: "Since Tim took over our hosting we’ve had zero downtime and I never worry about it. Any question, he’s straight back to me.", author: "Sarah Coles", role: "The Old Fashioned Cocktail Co." },
-      { quote: "Migrating over was completely seamless — I didn’t notice a thing, and the site has been quicker ever since.", author: "Owen Pryce", role: "Pryce & Co." },
-      { quote: "Knowing someone is watching the site around the clock is worth every penny. Total peace of mind.", author: "Rachel Dunn", role: "Dunn Interiors" },
-    ],
-    faqs: [
-      { question: "Can you host my existing website?", answer: "Almost always, yes. I’ll review your current setup and handle the migration for you with no downtime." },
-      { question: "What happens if something breaks?", answer: "I monitor sites proactively, so I often fix issues before you notice. If something does go wrong, I’m on it fast." },
-      { question: "Are backups included?", answer: "Yes — daily backups are standard, and I can restore your site quickly if it’s ever needed." },
-      { question: "Is there a long contract?", answer: "No lock-in. Hosting is a simple monthly plan you can leave whenever you like." },
-    ],
-  },
-  {
-    slug: "seo",
-    num: "03",
-    title: "SEO",
-    short:
-      "Get found by the right people with SEO that gains your site traction in search engines.",
+      "Get found by more of your ideal customers with search and performance optimisation.",
     next: "ai-automation",
-    lead: "Get found by the people already looking for you. Technical, on-page and content SEO that builds rankings and traffic that compound over time.",
+    lead: "Get found by the people already looking for you. Technical, on-page and content optimisation that builds rankings and traffic that compound over time.",
     quote:
       "The best marketing is being there the moment someone searches for exactly what you offer.",
     examples: [
-      { name: "Local search takeover", tag: "Local SEO", description: "Got a Devon trade business ranking in the top three for its key local searches." },
+      { name: "Local search takeover", tag: "Local", description: "Got a Devon trade business ranking in the top three for its key local searches." },
       { name: "Content that ranks", tag: "Content", description: "A focused blog strategy that grew organic traffic month on month." },
       { name: "Technical clean-up", tag: "Technical", description: "Fixed the issues holding a site back and watched rankings climb." },
     ],
@@ -171,19 +137,19 @@ export const services: Service[] = [
       { quote: "Clear reporting, no smoke and mirrors. Tim explained what he was doing and the rankings followed.", author: "Greg Allen", role: "Allen Plumbing" },
     ],
     faqs: [
-      { question: "How long until I see results?", answer: "SEO is a longer game — expect meaningful movement in 3–6 months, with results that keep compounding." },
-      { question: "Do you guarantee rankings?", answer: "No honest SEO can guarantee a #1 spot, but I focus on the changes that reliably move the needle." },
-      { question: "Is this just for local businesses?", answer: "Not at all. I do local SEO and broader national and content-led SEO depending on your goals." },
+      { question: "How long until I see results?", answer: "Optimisation is a longer game — expect meaningful movement in 3–6 months, with results that keep compounding." },
+      { question: "Do you guarantee rankings?", answer: "No honest optimisation work can guarantee a #1 spot, but I focus on the changes that reliably move the needle." },
+      { question: "Is this just for local businesses?", answer: "Not at all. I work with local, national and content-led strategies depending on your goals." },
       { question: "Will you report on progress?", answer: "Yes. You’ll get regular, jargon-free reports showing rankings, traffic and what I’m working on next." },
     ],
   },
   {
     slug: "ai-automation",
-    num: "04",
+    num: "03",
     title: "AI & Automation",
     short:
       "Practical AI tools and workflows that save you hours every week.",
-    next: "website-builds",
+    next: "websites",
     lead: "Put the repetitive work on autopilot. Practical AI tools and automated workflows that save hours, reduce errors and free you to focus on the business.",
     quote:
       "The goal isn’t clever technology for its own sake — it’s giving you back the hours you’re losing to repetitive work.",

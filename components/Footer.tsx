@@ -8,9 +8,8 @@ const siteLinks = [
 ];
 
 const serviceLinks = [
-  { href: "/services/website-builds", label: "Website Builds" },
-  { href: "/services/website-hosting", label: "Website Hosting" },
-  { href: "/services/seo", label: "SEO" },
+  { href: "/services/websites", label: "Websites" },
+  { href: "/services/optimisation", label: "Optimisation" },
   { href: "/services/ai-automation", label: "AI & Automation" },
 ];
 

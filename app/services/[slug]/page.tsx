@@ -44,7 +44,7 @@ export default async function ServicePage({
         <div className="container-tb grid grid-cols-1 md:grid-cols-[1fr_500px] gap-[72px] items-center pt-20">
           <div>
             <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-[22px]">
-              {svc.num} / 04 · Services
+              {svc.num} / 03 · Services
             </div>
             <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em]">
               {svc.title}

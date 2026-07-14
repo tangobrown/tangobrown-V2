@@ -6,9 +6,8 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 
 /**
  * Line-icon set matching the reference — each has a small SVG animation:
- * - Website Builds: dashed baseline "draws on" repeatedly (tbDraw)
- * - Website Hosting: two dots blink alternately (tbBlink)
- * - SEO: magnifying glass wanders in a small orbit (tbSearch)
+ * - Websites: dashed baseline "draws on" repeatedly (tbDraw)
+ * - Optimisation: magnifying glass wanders in a small orbit (tbSearch)
  * - AI & Automation: cog spins slowly (tbSpin), sparkle pulses (tbPulse)
  *
  * All animations respect prefers-reduced-motion via Tailwind's motion-safe:.
@@ -36,7 +35,7 @@ function IconBase({
   );
 }
 
-export function WebsiteBuildsIcon(props: IconProps) {
+export function WebsitesIcon(props: IconProps) {
   return (
     <IconBase {...props}>
       <rect x="4" y="7" width="32" height="26" rx="3" />
@@ -52,35 +51,7 @@ export function WebsiteBuildsIcon(props: IconProps) {
   );
 }
 
-export function HostingIcon(props: IconProps) {
-  return (
-    <IconBase {...props}>
-      <rect x="6" y="8" width="28" height="9" rx="2" />
-      <rect x="6" y="23" width="28" height="9" rx="2" />
-      <path d="M28 12.5 H30" />
-      <path d="M28 27.5 H30" />
-      <circle
-        cx="11"
-        cy="12.5"
-        r="1.5"
-        fill="currentColor"
-        stroke="none"
-        className="motion-safe:animate-tb-blink"
-      />
-      <circle
-        cx="11"
-        cy="27.5"
-        r="1.5"
-        fill="currentColor"
-        stroke="none"
-        className="motion-safe:animate-tb-blink"
-        style={{ animationDelay: "0.75s" }}
-      />
-    </IconBase>
-  );
-}
-
-export function SeoIcon(props: IconProps) {
+export function OptimisationIcon(props: IconProps) {
   return (
     <IconBase {...props}>
       <g
@@ -121,17 +92,15 @@ export function AiIcon(props: IconProps) {
   );
 }
 
-export type ServiceSlug = "website-builds" | "website-hosting" | "seo" | "ai-automation";
+export type ServiceSlug = "websites" | "optimisation" | "ai-automation";
 
 /** Convenience lookup so consumers can render an icon from a slug string. */
 export function ServiceIcon({ slug, ...props }: IconProps & { slug: ServiceSlug }) {
   switch (slug) {
-    case "website-builds":
-      return <WebsiteBuildsIcon {...props} />;
-    case "website-hosting":
-      return <HostingIcon {...props} />;
-    case "seo":
-      return <SeoIcon {...props} />;
+    case "websites":
+      return <WebsitesIcon {...props} />;
+    case "optimisation":
+      return <OptimisationIcon {...props} />;
     case "ai-automation":
       return <AiIcon {...props} />;
   }

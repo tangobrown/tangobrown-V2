@@ -6,18 +6,16 @@ import HeroCardColumns from "@/components/HeroCardColumns";
 import WorkCarousel from "@/components/WorkCarousel";
 import CtaBand from "@/components/CtaBand";
 import {
-  WebsiteBuildsIcon,
-  HostingIcon,
-  SeoIcon,
+  WebsitesIcon,
+  OptimisationIcon,
   AiIcon,
 } from "@/components/ServiceIcons";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 
 const serviceIcons = {
-  "website-builds": WebsiteBuildsIcon,
-  "website-hosting": HostingIcon,
-  seo: SeoIcon,
+  websites: WebsitesIcon,
+  optimisation: OptimisationIcon,
   "ai-automation": AiIcon,
 } as const;
 
@@ -107,9 +105,9 @@ export default function Home() {
           <h2 className="font-heading uppercase font-bold text-[45px] tracking-[-0.02em]">
             What I do
           </h2>
-          <UnderlineLink href="/services/website-builds">All services</UnderlineLink>
+          <UnderlineLink href="/services/websites">All services</UnderlineLink>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {services.map((s) => {
             const Icon = serviceIcons[s.slug];
             return (

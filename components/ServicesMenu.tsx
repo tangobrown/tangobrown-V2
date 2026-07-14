@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
-  WebsiteBuildsIcon,
-  HostingIcon,
-  SeoIcon,
+  WebsitesIcon,
+  OptimisationIcon,
   AiIcon,
 } from "./ServiceIcons";
 
@@ -18,25 +17,18 @@ interface Item {
 
 const items: Item[] = [
   {
-    href: "/services/website-builds",
-    title: "Website Builds",
+    href: "/services/websites",
+    title: "Websites",
     description:
-      "Bespoke, fast sites built around your goals and made to convert.",
-    Icon: WebsiteBuildsIcon,
+      "Bespoke, fast websites built around your goals and made to convert.",
+    Icon: WebsitesIcon,
   },
   {
-    href: "/services/website-hosting",
-    title: "Website Hosting",
+    href: "/services/optimisation",
+    title: "Optimisation",
     description:
-      "Secure, reliable hosting with updates, backups and support handled.",
-    Icon: HostingIcon,
-  },
-  {
-    href: "/services/seo",
-    title: "SEO",
-    description:
-      "Get found by the right people with SEO that gains your site traction in search engines.",
-    Icon: SeoIcon,
+      "Get found by more of your ideal customers with search and performance optimisation.",
+    Icon: OptimisationIcon,
   },
   {
     href: "/services/ai-automation",
@@ -128,7 +120,7 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
         className={[
           // 20px pt bridge so the cursor never leaves the outer div
           // while travelling from the trigger down to the visible panel.
-          "absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[980px] max-w-[calc(100vw-64px)] z-[60]",
+          "absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[780px] max-w-[calc(100vw-64px)] z-[60]",
           "transition-opacity duration-200",
           open
             ? "opacity-100 pointer-events-auto"
@@ -136,7 +128,7 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
         ].join(" ")}
       >
         <div
-          className="bg-white border-2 border-border-light p-[18px] grid grid-cols-4 gap-1.5"
+          className="bg-white border-2 border-border-light p-[18px] grid grid-cols-3 gap-1.5"
           style={{ boxShadow: "0 20px 54px rgba(0,0,0,.12)" }}
         >
           {items.map(({ href, title, description, Icon }) => (
