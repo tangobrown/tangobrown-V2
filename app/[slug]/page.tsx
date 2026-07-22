@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import SignatureCTA from "@/components/SignatureCTA";
 import UnderlineLink from "@/components/UnderlineLink";
 import LineIcon from "@/components/LineIcon";
@@ -10,6 +9,11 @@ import FaqAccordion from "@/components/FaqAccordion";
 import CtaBand from "@/components/CtaBand";
 import { services, getService } from "@/data/services";
 
+// This dynamic route now lives at the root: /websites, /lead-generation,
+// /ai-automation. generateStaticParams pre-renders exactly those three
+// slugs; any other path falls through to notFound() below. Static routes
+// like /work, /about, /contact, /privacy take precedence over this
+// dynamic route in Next's matcher, so they aren't affected.
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }

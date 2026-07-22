@@ -17,21 +17,21 @@ interface Item {
 
 const items: Item[] = [
   {
-    href: "/services/websites",
+    href: "/websites",
     title: "Websites",
     description:
       "Bespoke, fast websites built around your goals and made to convert.",
     Icon: WebsitesIcon,
   },
   {
-    href: "/services/lead-generation",
+    href: "/lead-generation",
     title: "Lead Generation",
     description:
       "Attract more of your ideal customers with search visibility and conversion-focused content.",
     Icon: LeadGenerationIcon,
   },
   {
-    href: "/services/ai-automation",
+    href: "/ai-automation",
     title: "AI & Automation",
     description:
       "Practical AI tools and workflows that save you hours every week.",
@@ -65,9 +65,9 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // /services no longer exists as a page — active state kicks in only
-  // when we're on a specific service detail route.
-  const active = pathname.startsWith("/services/");
+  // Service pages live at the root now (/websites etc). Active state
+  // is on when the current path matches one of the three service hrefs.
+  const active = items.some((it) => it.href === pathname);
 
   const openNow = () => {
     if (closeTimer.current) {

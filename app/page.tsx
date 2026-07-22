@@ -50,7 +50,7 @@ function ServiceCard({ service }: { service: Service }) {
           </p>
         </div>
         <div className="mt-auto pt-8 flex justify-start">
-          <SignatureCTA href={`/services/${service.slug}`}>
+          <SignatureCTA href={`/${service.slug}`}>
             Learn more
           </SignatureCTA>
         </div>

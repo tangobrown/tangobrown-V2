@@ -8,9 +8,9 @@ const siteLinks = [
 ];
 
 const serviceLinks = [
-  { href: "/services/websites", label: "Websites" },
-  { href: "/services/lead-generation", label: "Lead Generation" },
-  { href: "/services/ai-automation", label: "AI & Automation" },
+  { href: "/websites", label: "Websites" },
+  { href: "/lead-generation", label: "Lead Generation" },
+  { href: "/ai-automation", label: "AI & Automation" },
 ];
 
 const currentYear = new Date().getFullYear();
