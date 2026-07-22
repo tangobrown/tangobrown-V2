@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Service } from "@/data/services";
 import SignatureCTA from "@/components/SignatureCTA";
-import UnderlineLink from "@/components/UnderlineLink";
 import HeroCardColumns from "@/components/HeroCardColumns";
 import WorkCarousel from "@/components/WorkCarousel";
 import CtaBand from "@/components/CtaBand";
@@ -24,8 +23,8 @@ function ServiceCard({ service }: { service: Service }) {
   const Icon = serviceIcons[service.slug];
   return (
     <article className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white border-2 border-border-light p-8 md:p-10 shadow-md">
-      {/* Image left */}
-      <div className="relative aspect-square bg-cream border-2 border-border-light">
+      {/* Image — mobile: top; desktop: right (via md:order-2) */}
+      <div className="relative aspect-square bg-cream border-2 border-border-light md:order-2">
         {service.heroImage ? (
           <Image
             src={service.heroImage}
@@ -40,8 +39,8 @@ function ServiceCard({ service }: { service: Service }) {
           </div>
         )}
       </div>
-      {/* Text right: title top, paragraph under it, button bottom-right */}
-      <div className="flex flex-col">
+      {/* Text — mobile: under image; desktop: left (via md:order-1) */}
+      <div className="flex flex-col md:order-1">
         <div>
           <h3 className="font-heading uppercase font-bold text-[32px] md:text-[38px] leading-[1.05] tracking-[-0.02em] mb-4">
             {service.title}
@@ -50,7 +49,7 @@ function ServiceCard({ service }: { service: Service }) {
             {service.short}
           </p>
         </div>
-        <div className="mt-auto pt-8 flex justify-end">
+        <div className="mt-auto pt-8 flex justify-start">
           <SignatureCTA href={`/services/${service.slug}`}>
             Learn more
           </SignatureCTA>
@@ -126,7 +125,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Statement */}
+      {/* Statement + stacking service cards */}
       <section className="container-tb py-24">
         <p
           className="font-heading font-bold leading-[1.25] tracking-[-0.02em] max-w-[880px]"
@@ -138,17 +137,7 @@ export default function Home() {
             and automation.
           </span>
         </p>
-      </section>
-
-      {/* Services preview — stacking cards */}
-      <section className="container-tb pb-24">
-        <div className="flex items-baseline justify-between mb-9">
-          <h2 className="font-heading uppercase font-bold text-[45px] tracking-[-0.02em]">
-            What I do
-          </h2>
-          <UnderlineLink href="/services/websites">All services</UnderlineLink>
-        </div>
-        <div className="relative">
+        <div className="relative mt-10">
           {services.map((s, i) => {
             // Each card sticks a few px lower than the last so the previous
             // card's top edge stays visible peeking out above the current one.
