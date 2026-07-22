@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   WebsitesIcon,
-  OptimisationIcon,
+  LeadGenerationIcon,
   AiIcon,
 } from "./ServiceIcons";
 
@@ -24,11 +24,11 @@ const items: Item[] = [
     Icon: WebsitesIcon,
   },
   {
-    href: "/services/optimisation",
-    title: "Optimisation",
+    href: "/services/lead-generation",
+    title: "Lead Generation",
     description:
-      "Get found by more of your ideal customers with search and performance optimisation.",
-    Icon: OptimisationIcon,
+      "Attract more of your ideal customers with search visibility and conversion-focused content.",
+    Icon: LeadGenerationIcon,
   },
   {
     href: "/services/ai-automation",

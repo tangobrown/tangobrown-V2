@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Service } from "@/data/services";
 import SignatureCTA from "@/components/SignatureCTA";
 import UnderlineLink from "@/components/UnderlineLink";
 import HeroCardColumns from "@/components/HeroCardColumns";
@@ -7,7 +8,7 @@ import WorkCarousel from "@/components/WorkCarousel";
 import CtaBand from "@/components/CtaBand";
 import {
   WebsitesIcon,
-  OptimisationIcon,
+  LeadGenerationIcon,
   AiIcon,
 } from "@/components/ServiceIcons";
 import { services } from "@/data/services";
@@ -15,9 +16,49 @@ import { projects } from "@/data/projects";
 
 const serviceIcons = {
   websites: WebsitesIcon,
-  optimisation: OptimisationIcon,
+  "lead-generation": LeadGenerationIcon,
   "ai-automation": AiIcon,
 } as const;
+
+function ServiceCard({ service }: { service: Service }) {
+  const Icon = serviceIcons[service.slug];
+  return (
+    <article className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white border-2 border-border-light p-8 md:p-10 shadow-md">
+      {/* Image left */}
+      <div className="relative aspect-square bg-cream border-2 border-border-light">
+        {service.heroImage ? (
+          <Image
+            src={service.heroImage}
+            alt={service.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 500px"
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted-faint">
+            <Icon size={64} />
+          </div>
+        )}
+      </div>
+      {/* Text right: title top, paragraph under it, button bottom-right */}
+      <div className="flex flex-col">
+        <div>
+          <h3 className="font-heading uppercase font-bold text-[32px] md:text-[38px] leading-[1.05] tracking-[-0.02em] mb-4">
+            {service.title}
+          </h3>
+          <p className="text-[17px] leading-[1.55] text-ink max-w-[42ch]">
+            {service.short}
+          </p>
+        </div>
+        <div className="mt-auto pt-8 flex justify-end">
+          <SignatureCTA href={`/services/${service.slug}`}>
+            Learn more
+          </SignatureCTA>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default function Home() {
   return (
@@ -99,7 +140,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Services preview */}
+      {/* Services preview — stacking cards */}
       <section className="container-tb pb-24">
         <div className="flex items-baseline justify-between mb-9">
           <h2 className="font-heading uppercase font-bold text-[45px] tracking-[-0.02em]">
@@ -107,27 +148,19 @@ export default function Home() {
           </h2>
           <UnderlineLink href="/services/websites">All services</UnderlineLink>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x-2 md:divide-border">
-          {services.map((s) => {
-            const Icon = serviceIcons[s.slug];
+        <div className="relative">
+          {services.map((s, i) => {
+            // Each card sticks a few px lower than the last so the previous
+            // card's top edge stays visible peeking out above the current one.
+            const top = 100 + i * 16;
             return (
-              <Link
+              <div
                 key={s.slug}
-                href={`/services/${s.slug}`}
-                className="p-10 min-h-[280px] flex flex-col justify-between no-underline transition-colors hover:bg-cream"
+                className="sticky pb-6"
+                style={{ top: `${top}px` }}
               >
-                <div className="text-ink">
-                  <Icon size={38} />
-                </div>
-                <div>
-                  <div className="font-heading uppercase font-semibold text-[24px] mb-2.5">
-                    {s.title}
-                  </div>
-                  <div className="text-base leading-[1.5] text-ink">
-                    {s.short}
-                  </div>
-                </div>
-              </Link>
+                <ServiceCard service={s} />
+              </div>
             );
           })}
         </div>

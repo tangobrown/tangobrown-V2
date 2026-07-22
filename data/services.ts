@@ -65,7 +65,7 @@ export const services: Service[] = [
     title: "Websites",
     short:
       "Bespoke, fast websites built around your goals and made to convert.",
-    next: "optimisation",
+    next: "lead-generation",
     lead: "Bespoke websites designed around your goals and your customers — fast, accessible and built to turn visitors into enquiries. No templates, no bloat.",
     quote:
       "A website should do more than look good. It should earn its place by turning visitors into customers.",
@@ -111,15 +111,15 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "optimisation",
+    slug: "lead-generation",
     num: "02",
-    title: "Optimisation",
+    title: "Lead Generation",
     short:
-      "Get found by more of your ideal customers with search and performance optimisation.",
+      "Attract more of your ideal customers with search visibility and conversion-focused content.",
     next: "ai-automation",
-    lead: "Get found by the people already looking for you. Technical, on-page and content optimisation that builds rankings and traffic that compound over time.",
+    lead: "Turn more of your traffic into enquiries. Search visibility, sharper content and conversion-focused tweaks that build a steady flow of the right leads.",
     quote:
-      "The best marketing is being there the moment someone searches for exactly what you offer.",
+      "The best marketing is being there the moment someone is ready to buy exactly what you offer.",
     examples: [
       { name: "Local search takeover", tag: "Local", description: "Got a Devon trade business ranking in the top three for its key local searches." },
       { name: "Content that ranks", tag: "Content", description: "A focused blog strategy that grew organic traffic month on month." },
@@ -137,8 +137,8 @@ export const services: Service[] = [
       { quote: "Clear reporting, no smoke and mirrors. Tim explained what he was doing and the rankings followed.", author: "Greg Allen", role: "Allen Plumbing" },
     ],
     faqs: [
-      { question: "How long until I see results?", answer: "Optimisation is a longer game — expect meaningful movement in 3–6 months, with results that keep compounding." },
-      { question: "Do you guarantee rankings?", answer: "No honest optimisation work can guarantee a #1 spot, but I focus on the changes that reliably move the needle." },
+      { question: "How long until I see results?", answer: "Lead generation is a longer game — expect meaningful movement in 3–6 months, with results that keep compounding." },
+      { question: "Do you guarantee rankings?", answer: "No honest lead-gen work can guarantee a #1 spot, but I focus on the changes that reliably move the needle." },
       { question: "Is this just for local businesses?", answer: "Not at all. I work with local, national and content-led strategies depending on your goals." },
       { question: "Will you report on progress?", answer: "Yes. You’ll get regular, jargon-free reports showing rankings, traffic and what I’m working on next." },
     ],

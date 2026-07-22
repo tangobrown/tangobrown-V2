@@ -7,7 +7,7 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 /**
  * Line-icon set matching the reference — each has a small SVG animation:
  * - Websites: dashed baseline "draws on" repeatedly (tbDraw)
- * - Optimisation: magnifying glass wanders in a small orbit (tbSearch)
+ * - Lead Generation: magnifying glass wanders in a small orbit (tbSearch)
  * - AI & Automation: cog spins slowly (tbSpin), sparkle pulses (tbPulse)
  *
  * All animations respect prefers-reduced-motion via Tailwind's motion-safe:.
@@ -51,7 +51,7 @@ export function WebsitesIcon(props: IconProps) {
   );
 }
 
-export function OptimisationIcon(props: IconProps) {
+export function LeadGenerationIcon(props: IconProps) {
   return (
     <IconBase {...props}>
       <g
@@ -92,15 +92,15 @@ export function AiIcon(props: IconProps) {
   );
 }
 
-export type ServiceSlug = "websites" | "optimisation" | "ai-automation";
+export type ServiceSlug = "websites" | "lead-generation" | "ai-automation";
 
 /** Convenience lookup so consumers can render an icon from a slug string. */
 export function ServiceIcon({ slug, ...props }: IconProps & { slug: ServiceSlug }) {
   switch (slug) {
     case "websites":
       return <WebsitesIcon {...props} />;
-    case "optimisation":
-      return <OptimisationIcon {...props} />;
+    case "lead-generation":
+      return <LeadGenerationIcon {...props} />;
     case "ai-automation":
       return <AiIcon {...props} />;
   }

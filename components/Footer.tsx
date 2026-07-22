@@ -9,7 +9,7 @@ const siteLinks = [
 
 const serviceLinks = [
   { href: "/services/websites", label: "Websites" },
-  { href: "/services/optimisation", label: "Optimisation" },
+  { href: "/services/lead-generation", label: "Lead Generation" },
   { href: "/services/ai-automation", label: "AI & Automation" },
 ];
 
