@@ -24,7 +24,7 @@ function ServiceCard({ service }: { service: Service }) {
   return (
     <article className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white border-2 border-border-light p-8 md:p-10 shadow-md">
       {/* Image — mobile: top; desktop: right (via md:order-2) */}
-      <div className="relative aspect-square bg-cream border-2 border-border-light md:order-2">
+      <div className="relative aspect-[4/3] bg-cream border-2 border-border-light md:order-2">
         {service.heroImage ? (
           <Image
             src={service.heroImage}
