@@ -65,7 +65,9 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const active = pathname === "/services" || pathname.startsWith("/services/");
+  // /services no longer exists as a page — active state kicks in only
+  // when we're on a specific service detail route.
+  const active = pathname.startsWith("/services/");
 
   const openNow = () => {
     if (closeTimer.current) {
@@ -91,17 +93,18 @@ export default function ServicesMenu({ pathname }: { pathname: string }) {
       onMouseEnter={openNow}
       onMouseLeave={closeSoon}
     >
-      <Link
-        href="/services"
+      {/* Non-navigable label — the hover mega-menu is how users reach
+          the actual service pages. */}
+      <span
         className={[
-          "cursor-pointer transition-colors",
+          "cursor-default select-none transition-colors",
           active
             ? "text-ink font-semibold border-b-[1.5px] border-ink pb-0.5"
-            : "text-ink font-medium hover:text-ink",
+            : "text-ink font-medium",
         ].join(" ")}
       >
         Services
-      </Link>
+      </span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
