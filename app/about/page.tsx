@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import CtaBand from "@/components/CtaBand";
 import LineIcon from "@/components/LineIcon";
 import TestimonialMarquee from "@/components/TestimonialMarquee";
@@ -103,8 +104,15 @@ export default function AboutPage() {
               pay off long after the project ends.
             </p>
           </div>
-          <div className="h-[520px] w-full bg-placeholder-soft border-2 border-border flex items-center justify-center text-muted-faint text-sm">
-            Portrait
+          <div className="relative h-[520px] w-full">
+            <Image
+              src="/tim-about.jpg"
+              alt="Tim Brown"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 500px"
+              className="object-cover"
+            />
           </div>
           </div>
         </div>
