@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
+import LineIcon from "@/components/LineIcon";
+import TestimonialMarquee from "@/components/TestimonialMarquee";
+import type { IconName } from "@/data/services";
+import { services } from "@/data/services";
+
+// Pool the three services' testimonials into one list for the About-page
+// marquee so it has enough quotes to feel populated as the loop cycles.
+const aboutTestimonials = services.flatMap((s) => s.testimonials);
 
 export const metadata: Metadata = {
   title: "About — Tango Brown",
@@ -7,18 +15,21 @@ export const metadata: Metadata = {
     "Freelance digital growth consultant based in Exeter, Devon, working with businesses across the UK.",
 };
 
-const values = [
+const values: Array<{ icon: IconName; title: string; description: string }> = [
   {
+    icon: "headset",
     title: "One point of contact",
     description:
       "You deal with me, start to finish. Faster decisions, clearer communication.",
   },
   {
+    icon: "shield",
     title: "Built to last",
     description:
       "Fast, maintainable sites and systems that grow with your business.",
   },
   {
+    icon: "check",
     title: "No jargon",
     description:
       "Plain English, honest advice, and a clear plan you'll actually understand.",
@@ -100,10 +111,13 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="container-tb pt-12 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t-2 border-border-light pt-12">
+      <section className="container-tb py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {values.map((v) => (
             <div key={v.title}>
+              <div className="w-[52px] h-[52px] bg-cream flex items-center justify-center mb-5 text-ink">
+                <LineIcon name={v.icon} size={26} />
+              </div>
               <div className="font-heading uppercase font-bold text-[22px] mb-2.5">
                 {v.title}
               </div>
@@ -114,6 +128,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* Testimonials marquee (matches the service-page pattern) */}
+      <TestimonialMarquee testimonials={aboutTestimonials} />
 
       {/* Work history */}
       <section className="bg-cream border-t-2 border-border-light">
