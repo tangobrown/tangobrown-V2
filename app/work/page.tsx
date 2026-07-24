@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
+import UnderlineLink from "@/components/UnderlineLink";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -26,11 +27,15 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Project grid */}
-      <section className="container-tb pt-24 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Project rows */}
+      <section className="container-tb pb-24">
+        <div className="divide-y-2 divide-border-light">
           {projects.map((p) => (
-            <article key={p.name}>
+            <article
+              key={p.name}
+              className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-16 first:pt-0"
+            >
+              {/* Image left */}
               <div className="aspect-[1000/606] w-full overflow-hidden bg-white">
                 {p.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -45,17 +50,25 @@ export default function WorkPage() {
                   </div>
                 )}
               </div>
-              <div className="flex justify-between items-baseline mt-4">
-                <div className="font-heading uppercase font-bold text-[20px]">
-                  {p.name}
-                </div>
-                <div className="text-[13px] text-muted-faint uppercase tracking-[0.06em]">
+              {/* Text right */}
+              <div>
+                <div className="text-[13px] text-muted-faint uppercase tracking-[0.06em] mb-4">
                   {p.services.join(" · ")}
                 </div>
+                <h2 className="font-heading uppercase font-bold text-[36px] leading-[1.1] tracking-[-0.02em] mb-4">
+                  {p.name}
+                </h2>
+                <p className="text-[17px] leading-[1.55] text-ink max-w-[52ch]">
+                  {p.overview}
+                </p>
+                {p.url && (
+                  <div className="mt-6">
+                    <UnderlineLink href={p.url} external>
+                      Visit website
+                    </UnderlineLink>
+                  </div>
+                )}
               </div>
-              <p className="text-base text-ink mt-1.5 max-w-[46ch]">
-                {p.overview}
-              </p>
             </article>
           ))}
         </div>
