@@ -38,7 +38,18 @@ const values: Array<{ icon: IconName; title: string; description: string }> = [
 ];
 
 // Placeholder entries — replace with real history when ready. Newest first.
-const workHistory = [
+// Set `logo` to a /public path (e.g. '/logos/company.png') to show the
+// company mark on the right; otherwise a subtle placeholder box renders.
+type WorkEntry = {
+  years: string;
+  role: string;
+  company: string;
+  location?: string;
+  description: string;
+  logo?: string;
+};
+
+const workHistory: WorkEntry[] = [
   {
     years: "2020 — Present",
     role: "Digital Growth Consultant",
@@ -153,7 +164,7 @@ export default function AboutPage() {
             {workHistory.map((entry) => (
               <article
                 key={`${entry.years}-${entry.company}`}
-                className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-x-10 gap-y-3 py-8 first:pt-0"
+                className="grid grid-cols-1 md:grid-cols-[200px_1fr_140px] gap-x-10 gap-y-3 py-8 first:pt-0 items-start"
               >
                 <div className="font-heading uppercase font-bold text-[14px] tracking-[0.06em] text-muted-faint pt-1">
                   {entry.years}
@@ -169,6 +180,21 @@ export default function AboutPage() {
                   <p className="text-[15px] leading-[1.6] text-ink max-w-[64ch]">
                     {entry.description}
                   </p>
+                </div>
+                {/* Company logo — placeholder box until an image path is set on the entry */}
+                <div className="flex justify-end items-start pt-1">
+                  {entry.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={entry.logo}
+                      alt={`${entry.company} logo`}
+                      className="max-w-[120px] max-h-[80px] w-auto h-auto object-contain"
+                    />
+                  ) : (
+                    <div className="w-[120px] h-[80px] border-2 border-border-light bg-white flex items-center justify-center text-muted-faint text-[11px] uppercase tracking-[0.1em]">
+                      Logo
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
