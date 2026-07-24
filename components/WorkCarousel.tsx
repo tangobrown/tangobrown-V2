@@ -141,7 +141,7 @@ export default function WorkCarousel({ projects, perView = 2 }: Props) {
           {loop.map((project, i) => (
             <div
               key={`${project.name}-${i}`}
-              className="box-border pr-6"
+              className="box-border pr-12"
               style={{ width: `${cardWidthPct}%`, flex: "0 0 auto" }}
             >
               <div className="aspect-[1000/606] w-full overflow-hidden bg-placeholder-bg relative">
