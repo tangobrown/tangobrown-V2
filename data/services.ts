@@ -64,9 +64,9 @@ export const services: Service[] = [
     num: "01",
     title: "Websites",
     short:
-      "Bespoke, fast websites built around your goals and made to convert.",
+      "Websites that earn their keep. Beautiful, fast, and built to turn visitors into paying customers.",
     next: "lead-generation",
-    lead: "Bespoke websites designed around your goals and your customers — fast, accessible and built to turn visitors into enquiries. No templates, no bloat.",
+    lead: "Need a website that actually earns its keep? One that loads in a blink, looks brilliant on any screen and turns curious visitors into enquiries? That's what I build — bespoke to your business, no templates, no bloat.",
     quote:
       "A website should do more than look good. It should earn its place by turning visitors into customers.",
     heroImage: "/vowles-hero.jpg",
@@ -115,9 +115,9 @@ export const services: Service[] = [
     num: "02",
     title: "Lead Generation",
     short:
-      "Attract more of your ideal customers with search visibility and conversion-focused content.",
+      "More of the right visitors — and more of them ready to buy. Search visibility and content that actually converts.",
     next: "ai-automation",
-    lead: "Turn more of your traffic into enquiries. Search visibility, sharper content and conversion-focused tweaks that build a steady flow of the right leads.",
+    lead: "Getting visitors to your site is one thing. Getting them to actually get in touch? That's the bit most businesses get wrong. Here's how we fix it — from search rankings to smart conversion tweaks that turn browsers into enquiries.",
     quote:
       "The best marketing is being there the moment someone is ready to buy exactly what you offer.",
     examples: [
@@ -148,9 +148,9 @@ export const services: Service[] = [
     num: "03",
     title: "AI & Automation",
     short:
-      "Practical AI tools and workflows that save you hours every week.",
+      "Get your evenings back. Smart automation that quietly handles the admin so you can focus on the fun bits.",
     next: "websites",
-    lead: "Put the repetitive work on autopilot. Practical AI tools and automated workflows that save hours, reduce errors and free you to focus on the business.",
+    lead: "Bogged down by admin? Answering the same questions over and over? Let smart AI and automation take the boring bits off your plate — so you can spend your time on the work that actually grows the business.",
     quote:
       "The goal isn’t clever technology for its own sake — it’s giving you back the hours you’re losing to repetitive work.",
     examples: [

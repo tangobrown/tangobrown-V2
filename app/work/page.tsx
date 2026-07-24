@@ -22,7 +22,8 @@ export default function WorkPage() {
             A few projects I&apos;m proud of.
           </h1>
           <p className="text-[19px] font-semibold leading-[1.55] text-ink max-w-[52ch] mt-7">
-            Websites, hosting, SEO and automation for UK businesses.
+            Real work for real businesses — from local trades to global
+            consultancies. Have a scroll.
           </p>
         </div>
       </section>

@@ -73,8 +73,10 @@ export default function Home() {
               Your growth is my mission.
             </h1>
             <p className="text-[19px] font-semibold leading-[1.55] text-ink max-w-[46ch] mt-[22px]">
-              Technology moves fast. I keep your business ahead of it with
-              stunning websites and smart AI automation to fuel growth online.
+              You know your business could be growing faster online. You just
+              haven&apos;t had the time to work out how. That&apos;s where I come
+              in — smart websites, sharper visibility and AI that actually pays
+              for itself.
             </p>
             <div className="mt-7">
               <SignatureCTA href="/contact">Start a project</SignatureCTA>
@@ -131,10 +133,10 @@ export default function Home() {
           className="font-heading font-bold leading-[1.25] tracking-[-0.02em] max-w-[880px]"
           style={{ fontSize: "45px" }}
         >
-          <span className="text-ink">Helping businesses</span>{" "}
+          <span className="text-ink">Helping small businesses</span>{" "}
           <span className="text-muted-extra">
-            communicate clearly and grow online through design, performance
-            and automation.
+            turn their website into their hardest-working employee — through
+            smart design, sharper visibility and AI that quietly gets on with things.
           </span>
         </p>
         <div className="relative mt-10">

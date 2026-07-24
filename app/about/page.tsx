@@ -87,21 +87,21 @@ export default function AboutPage() {
               Hi, I&apos;m Tim Brown.
             </h1>
             <p className="text-[19px] font-semibold leading-[1.6] text-ink mt-7">
-              I&apos;m a freelance digital consultant based in Exeter, working
-              with businesses across the UK. I help them build a presence
-              online that looks the part and actually performs.
+              Nice to meet you. I&apos;m a freelance digital growth consultant
+              based in Exeter — helping small businesses across the UK look
+              brilliant online, and actually get results from it.
             </p>
             <p className="text-[17px] leading-[1.65] text-ink mt-5">
-              For me, that means joining up the pieces most businesses juggle
-              separately — design, hosting, SEO and automation — under one
-              roof, with one person who&apos;s accountable for the whole thing.
-              No agency overheads, no account managers, no jargon. Just clear,
-              honest work that moves the needle.
+              Most businesses juggle their digital work between different
+              people — one for the website, another for SEO, someone else for
+              automation. I do the lot. One person, one point of contact, one
+              plan that all joins up. No agency overheads. No account
+              managers. No waffle.
             </p>
             <p className="text-[17px] leading-[1.65] text-ink mt-5">
-              Whether you&apos;re starting from scratch or improving what
-              you&apos;ve already got, I&apos;ll help you make decisions that
-              pay off long after the project ends.
+              Whether you&apos;re starting from scratch or fixing what
+              isn&apos;t working, I&apos;ll help you make choices that keep
+              paying off long after we&apos;re done.
             </p>
           </div>
           <div className="relative h-[520px] w-full">

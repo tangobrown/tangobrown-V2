@@ -17,11 +17,12 @@ export default function ContactPage() {
             Contact
           </div>
           <h1 className="font-heading uppercase font-bold text-[60px] leading-[1.04] tracking-[-0.03em]">
-            Let&apos;s start something.
+            Fancy a chat?
           </h1>
           <p className="text-[18px] font-semibold leading-[1.6] text-ink mt-7 max-w-[42ch]">
-            Tell me a little about your business and what you&apos;re hoping to
-            achieve. I&apos;ll get back to you within one working day.
+            Tell me a bit about you and what you&apos;re trying to sort out.
+            I&apos;ll get back to you within one working day — with proper
+            thoughts, not a sales pitch.
           </p>
           <div className="mt-12 flex flex-col gap-6">
             <div>
