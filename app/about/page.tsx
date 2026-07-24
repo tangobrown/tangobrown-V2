@@ -25,6 +25,42 @@ const values = [
   },
 ];
 
+// Placeholder entries — replace with real history when ready. Newest first.
+const workHistory = [
+  {
+    years: "2020 — Present",
+    role: "Digital Growth Consultant",
+    company: "Tango Brown",
+    location: "Exeter, Devon",
+    description:
+      "Freelance digital work with UK businesses — bespoke websites, lead generation and practical AI automation, joined up under one point of contact.",
+  },
+  {
+    years: "2016 — 2020",
+    role: "Senior Digital Designer",
+    company: "Company Name",
+    location: "City",
+    description:
+      "Led design and delivery on client web projects across sectors. Set up team workflows and mentored junior designers. Swap this line for the real detail.",
+  },
+  {
+    years: "2012 — 2016",
+    role: "Web Designer & Front-End Developer",
+    company: "Company Name",
+    location: "City",
+    description:
+      "Built responsive sites for small businesses and e-commerce clients. First hands-on with SEO, hosting migrations and CMS integrations.",
+  },
+  {
+    years: "2008 — 2012",
+    role: "Junior Designer",
+    company: "Company Name",
+    location: "City",
+    description:
+      "First role out of study — supported senior designers on print and digital work, learnt the craft end to end.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -76,6 +112,42 @@ export default function AboutPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Work history */}
+      <section className="bg-cream border-t-2 border-border-light">
+        <div className="container-tb py-24">
+          <div className="font-heading uppercase font-bold text-[13px] tracking-[0.1em] text-muted-faint mb-7">
+            Work history
+          </div>
+          <h2 className="font-heading uppercase font-bold text-[45px] leading-[1.05] tracking-[-0.03em] mb-12">
+            Where I&apos;ve been.
+          </h2>
+          <div className="divide-y-2 divide-border-light">
+            {workHistory.map((entry) => (
+              <article
+                key={`${entry.years}-${entry.company}`}
+                className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-x-10 gap-y-3 py-8 first:pt-0"
+              >
+                <div className="font-heading uppercase font-bold text-[14px] tracking-[0.06em] text-muted-faint pt-1">
+                  {entry.years}
+                </div>
+                <div>
+                  <div className="font-heading uppercase font-bold text-[24px] leading-[1.1] tracking-[-0.02em]">
+                    {entry.role}
+                  </div>
+                  <div className="text-[15px] font-semibold text-ink mt-1 mb-3">
+                    {entry.company}
+                    {entry.location ? ` · ${entry.location}` : ""}
+                  </div>
+                  <p className="text-[15px] leading-[1.6] text-ink max-w-[64ch]">
+                    {entry.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
